@@ -5,6 +5,8 @@ theme = "yinwang"
 Paginate = 12
 
 [params]
+    author = "hackrole"
+    github = "hackrole"
     name = "hackrole"
     url = "https://hackrole.github.io/"
     description = "Yet Another Developer"
