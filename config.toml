@@ -1,0 +1,9 @@
+baseURL = "http://hackrole.github.io"
+languageCode = "en-us"
+title = "hackrole's note"
+theme = "binario"
+Paginate = 12
+
+[taxonomies]
+   tag = "tags"
+   category = "categories"
