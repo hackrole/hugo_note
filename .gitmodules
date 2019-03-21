@@ -1,0 +1,21 @@
+[submodule "themes/hallo"]
+	path = themes/hallo
+	url = https://github.com/EmielH/hallo-hugo.git
+[submodule "themes/m10c"]
+	path = themes/m10c
+	url = https://github.com/vaga/hugo-theme-m10c.git
+[submodule "themes/story"]
+	path = themes/story
+	url = https://github.com/xaprb/story.git
+[submodule "themes/lamp"]
+	path = themes/lamp
+	url = https://github.com/huyb1991/hugo-lamp
+[submodule "themes/hugo-theme-cleanwhite"]
+	path = themes/hugo-theme-cleanwhite
+	url = https://github.com/zhaohuabing/hugo-theme-cleanwhite.git
+[submodule "themes/hugo-flex"]
+	path = themes/hugo-flex
+	url = https://github.com/de-souza/hugo-flex.git
+[submodule "themes/yinwang"]
+	path = themes/yinwang
+	url = https://github.com/chinanf-boy/gohugo-theme-yinwang.git
