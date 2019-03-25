@@ -1,7 +1,7 @@
 ---
 Title: sort algorithms note
 Date: 2019-03-08 10:05
-Catagory: [algorithms]
+Category: [algorithms]
 Tags: [algorithms]
 Author: hackrole
 ---
