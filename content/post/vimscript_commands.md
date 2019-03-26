@@ -2,7 +2,7 @@
 title: vimscript commands
 author: hackrole
 email: hack.role@gmail.com
-status: draft
+draft: true
 ---
 
 

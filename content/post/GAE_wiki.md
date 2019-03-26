@@ -3,7 +3,7 @@ title: GAE碰到的小问题
 author: hackrole
 email: hack.role@gmail.com
 date: 2013-10-03 15:13:41
-status: draft
+draft: true
 tags: ["GAE"]
 category: ["programming"]
 ---

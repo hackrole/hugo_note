@@ -3,7 +3,7 @@ title: numpy中使用不对称数组初始话np.array的结果
 author: hackrole
 email: hack.role@gmail.com
 date: 2015/10/29
-status: draft
+draft: true
 tags: ["numpy"]
 category: ["programming"]
 ---

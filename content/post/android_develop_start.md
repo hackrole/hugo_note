@@ -3,15 +3,14 @@ title: android开发起步
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:32:47
-status: draft
+draft: true
 tags: ["android"]
 category: ["programming"]
 ---
 
 
 
-安装sdk
--------
+# 安装sdk
 安装android前须先安装jdk.
 
 过程如下.

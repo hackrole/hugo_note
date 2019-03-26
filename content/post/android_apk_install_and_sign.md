@@ -3,7 +3,7 @@ title: androiod下如何安装和对apk做sign
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-07
-status: draft
+draft: true
 tags: ["android","react_native"]
 category: ["programming"]
 ---

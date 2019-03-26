@@ -3,7 +3,7 @@ title: 抛弃历史的重构方式
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-06-20 13:35:42
-status: draft
+draft: true
 tags: ["reflection","history"]
 category: ["design"]
 ---

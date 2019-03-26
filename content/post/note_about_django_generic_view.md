@@ -3,7 +3,7 @@ title: django generic-view使用笔记
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-08 15:32:35
-status: draft
+draft: true
 tags: ["django","style","python"]
 category: ["programming"]
 ---

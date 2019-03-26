@@ -3,7 +3,7 @@ title: mnesia用户手册(官方文档)
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-12-24 15:30:37
-status: draft
+draft: true
 tags: ["erlang","mnesia"]
 category: ["programming"]
 ---

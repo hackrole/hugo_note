@@ -3,7 +3,7 @@ title: redis数据结构介绍
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:31:57
-status: draft
+draft: true
 tags: ["redis"]
 category: ["programming"]
 ---

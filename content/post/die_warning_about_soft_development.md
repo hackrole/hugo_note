@@ -3,7 +3,7 @@ title: 软件开发的dead warning
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-12-18 14:48:27
-status: draft
+draft: true
 tags: ["design","style"]
 category: ["design"]
 ---

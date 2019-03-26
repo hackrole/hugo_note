@@ -3,7 +3,7 @@ title: vim插件Synatics配置
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-04-28 15:44:44
-status: draft
+draft: true
 tags: ["vim"]
 category: ["tools"]
 ---

@@ -3,7 +3,7 @@ title: get_obj_or_404注意
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-05 15:22:47
-status: draft
+draft: true
 tags: ["django"]
 category: ["programming"]
 ---

@@ -3,7 +3,7 @@ title: mongodb 地理位置查询tips
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-05-15 17:29:34
-status: draft
+draft: true
 tags: ["mongodb"]
 category: ["programming"]
 ---

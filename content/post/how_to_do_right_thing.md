@@ -3,7 +3,7 @@ title: 直觉竟被所谓理性顺利带到沟里
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-05-07 12:08:36
-status: draft
+draft: true
 tags: ["coding"]
 ---
 

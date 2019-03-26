@@ -3,7 +3,7 @@ title: 为什么不应该说我不懂
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-09 15:45:53
-status: draft
+draft: true
 tags: ["team"]
 category: ["design"]
 ---

@@ -3,7 +3,7 @@ title: django 调试记录
 author: hackrole
 email: hack.role@gmail.com
 date: 2018-04-16 18:44:40
-status: draft
+draft: true
 tags: ["django","debug"]
 category: ["programming"]
 ---

@@ -55,9 +55,9 @@ category: ["programming"]
 在文件头加入:
 
     # rst-mode
-    :Status: draft
+    :draft: true
     # markdown-mode
-    Status: draft
+    draft: true
 
 可将文件设置为drafted, 不会发布到网上
 

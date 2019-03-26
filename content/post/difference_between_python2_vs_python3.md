@@ -3,7 +3,7 @@ title: python2与python的区别整理
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-02-01 10:54:46
-status: draft
+draft: true
 tags: ["python","python3","tips"]
 category: ["programming"]
 ---

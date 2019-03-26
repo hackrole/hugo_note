@@ -3,7 +3,7 @@ title: ruby koans:类相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-14 15:26:33
-status: draft
+draft: true
 tags: ["ruby"]
 category: ["programming"]
 ---

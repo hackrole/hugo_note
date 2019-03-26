@@ -3,7 +3,7 @@ title: ejabberd服务器配置与常见问题汇总
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-08-08 14:51:58
-status: draft
+draft: true
 tags: ["ejabberd"]
 category: ["tools"]
 ---

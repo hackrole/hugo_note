@@ -3,20 +3,18 @@ title: oauth2
 author: hackrole
 email: hack.role@gmail.com
 date: 2018-05-03 13:40:09
-status: draft
+draft: true
 tags: ["oauth2",""]
 ---
 
 
 
-desc
------
+# desc
 open authorization
 
 rfc 6749 6750 6819
 
-四种模式
---------
+# 四种模式
 
 1) 授权码模式(auth code)
 
@@ -27,8 +25,7 @@ rfc 6749 6750 6819
 4) 客户端模式(client credentials)
 
 
-关键参数
---------
+# 关键参数
 
 1) response_type(code/token)
 
@@ -47,8 +44,7 @@ rfc 6749 6750 6819
 8) access_token/refresh_token/expires_in/scope/token_type
 
 
-others
-------
+# others
 
 1) code only once usable.
 

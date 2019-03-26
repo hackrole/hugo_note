@@ -3,7 +3,7 @@ title: django项目自顶向下构造方式
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-04-24 15:06:20
-status: draft
+draft: true
 tags: ["django","style"]
 category: ["programming"]
 ---

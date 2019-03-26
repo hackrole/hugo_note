@@ -3,7 +3,7 @@ title: 读人月神话
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-05-26 15:37:30
-status: draft
+draft: true
 tags: ["team","design"]
 category: ["design"]
 ---

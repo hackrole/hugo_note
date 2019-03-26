@@ -3,7 +3,7 @@ title: git小计
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-12-12 15:15:38
-status: draft
+draft: true
 tags: ["git"]
 category: ["tools"]
 ---

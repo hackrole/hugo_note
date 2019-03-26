@@ -3,7 +3,7 @@ title: svn与git比较
 author: hackrole
 email: hack.role@gmail.com
 date: 2013-12-26 15:38:55
-status: draft
+draft: true
 tags: ["git"]
 category: ["tools"]
 ---

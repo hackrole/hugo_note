@@ -3,7 +3,7 @@ title: vim中不应该使用的按键映射
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-05-07 15:43:03
-status: draft
+draft: true
 tags: ["vim"]
 category: ["tools"]
 ---

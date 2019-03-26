@@ -3,7 +3,7 @@ title: vim搭建nodejs/javascript开发环境
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-04-09 16:15:00
-status: draft
+draft: true
 tags: ["vim","nodejs","javascript"]
 category: ["tools"]
 ---

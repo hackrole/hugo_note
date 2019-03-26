@@ -3,7 +3,7 @@ title: ruby koans笔记:流程控制
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-14 14:16:28
-status: draft
+draft: true
 tags: ["ruby"]
 category: ["programming"]
 ---

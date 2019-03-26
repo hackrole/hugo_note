@@ -3,7 +3,7 @@ title: docker笔记
 author: hackrole
 email: hack.role@gmail.com
 date: 2018-07-09 12:49:56
-status: draft
+draft: true
 tags: ["docker"]
 category: ["tools"]
 ---

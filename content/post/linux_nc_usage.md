@@ -3,7 +3,7 @@ title: linux下nc命令使用
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-08-15 16:20:32
-status: draft
+draft: true
 tags: ["nc"]
 category: ["tools"]
 ---

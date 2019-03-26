@@ -3,7 +3,7 @@ title: 如何管理个人笔记和计划
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-11-05
-status: draft
+draft: true
 tags: ["tips","design"]
 category: ["plan"]
 ---

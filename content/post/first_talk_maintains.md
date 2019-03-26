@@ -3,7 +3,7 @@ title: 工作中的第一印象
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-09 15:04:47
-status: draft
+draft: true
 tags: ["team"]
 category: ["team"]
 ---

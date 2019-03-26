@@ -3,9 +3,10 @@ title: lisp 基本概念与内建数据类型简介
 author: hackrole
 email: hack.role@gmail.com
 date: 2013-12-23 14:56:20
-status: draft
+series: ["elisp"]
 tags: ["emacs"]
 category: ["tools"]
+draft: true
 ---
 
 

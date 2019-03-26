@@ -4,7 +4,7 @@ Date: 2018-12-06
 Category: [python]
 Tags: [python,tips]
 Author: hackrole
-Status: Draft
+draft: true
 Email: hack.role@gmail.com
 ---
 

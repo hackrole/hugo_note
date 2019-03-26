@@ -3,7 +3,7 @@ title: 软件开发big things
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-04-12 14:44:13
-status: draft
+draft: true
 tags: ["design"]
 category: ["design"]
 ---

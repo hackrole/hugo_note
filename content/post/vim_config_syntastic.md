@@ -3,7 +3,7 @@ title: 配置vim syntastic语法高亮插件
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-02-02 14:55:23
-status: draft
+draft: true
 tags: ["vim"]
 category: ["tools"]
 ---

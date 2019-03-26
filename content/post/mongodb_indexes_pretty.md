@@ -3,7 +3,7 @@ title: mongodb索引建立和优化
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-06-27 17:38:06
-status: draft
+draft: true
 tags: ["mongodb","tips"]
 category: ["programming"]
 ---

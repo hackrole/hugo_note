@@ -3,7 +3,7 @@ title: golang1.5编译失败及gvm安装golang报错
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-09-02 15:22:11
-status: draft
+draft: true
 tags: ["golang","tips"]
 category: ["programming"]
 ---

@@ -3,7 +3,7 @@ title: python中使用with来减少代码重复
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-09-10 15:36:07
-status: draft
+draft: true
 tags: ["python"]
 category: ["programming"]
 ---

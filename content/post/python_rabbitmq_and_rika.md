@@ -3,7 +3,7 @@ title: rabbitmq和python-rika库入门
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-07-10 17:07:40
-status: draft
+draft: true
 tags: ["python","rabbitmq","rika"]
 category: ["programming"]
 ---

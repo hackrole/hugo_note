@@ -3,7 +3,7 @@ title: linux下为应用写个desktop文件
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-05-05 16:27:53
-status: draft
+draft: true
 tags: ["tips"]
 category: ["tools"]
 ---

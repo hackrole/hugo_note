@@ -3,7 +3,7 @@ title: 如果在pytest中使用pdb调试代码
 author: hackrole
 email: hack.role@gmail.com
 date: 2015/11/01
-status: draft
+draft: true
 tags: ["py.test","python","TDD"]
 category: ["programming"]
 ---

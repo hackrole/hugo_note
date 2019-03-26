@@ -3,7 +3,8 @@ title: elisp变量相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-01-02 15:02:21
-status: published
+draft: false
+serials: ["elisp"]
 tags: ["emacs"]
 category: ["tools"]
 ---

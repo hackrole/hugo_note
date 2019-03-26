@@ -3,7 +3,7 @@ title: docker入门
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-04 14:49:44
-status: draft
+draft: true
 tags: ["docker","vagrant"]
 category: ["tools"]
 ---

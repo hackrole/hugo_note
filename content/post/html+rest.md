@@ -3,7 +3,7 @@ title: http协议与restful-api设计
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-03-26 15:25:47
-status: draft
+draft: true
 tags: ["http","restful","api"]
 category: ["programming"]
 ---

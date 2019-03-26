@@ -3,7 +3,7 @@ title: 如何设置vim options
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:24:52
-status: draft
+draft: true
 tags: ["vim"]
 category: ["tools"]
 ---

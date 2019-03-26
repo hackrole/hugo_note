@@ -3,7 +3,7 @@ title: 如何在团队内部推广工具
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-09 15:03:11
-status: draft
+draft: true
 tags: ["team"]
 category: ["team"]
 ---

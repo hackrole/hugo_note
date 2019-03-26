@@ -3,7 +3,7 @@ title: python数据分析twitter相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-05-26 15:35:14
-status: draft
+draft: true
 tags: ["python"]
 category: ["programming"]
 ---

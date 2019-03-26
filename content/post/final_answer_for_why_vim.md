@@ -3,7 +3,7 @@ title: 编译器之争的终结
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-05 15:04:13
-status: draft
+draft: true
 tags: ["vim","tools","style"]
 category: ["tools"]
 ---

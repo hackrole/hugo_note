@@ -3,7 +3,7 @@ title: 如何mock requests模块
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:33:44
-status: draft
+draft: true
 tags: ["TDD","python","tips"]
 category: ["programming"]
 ---

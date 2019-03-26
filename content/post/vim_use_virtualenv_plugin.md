@@ -3,7 +3,7 @@ title: vim中使用virtualenv插件
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-03-21 10:19:42
-status: draft
+draft: true
 tags: ["vim","virtualenv","python","pep8"]
 category: ["tools"]
 ---

@@ -3,7 +3,7 @@ title: 如何阅读源码
 author: hackrole
 email: hack.role@gmail.com
 date: 2013-09-11 15:24:45
-status: draft
+draft: true
 tags: ["source_read"]
 category: ["programming"]
 ---

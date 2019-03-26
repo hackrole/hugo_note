@@ -3,7 +3,7 @@ title: chrome extension调试
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-19 15:44:33
-status: draft
+draft: true
 tags: ["chrome"]
 category: ["programming"]
 ---

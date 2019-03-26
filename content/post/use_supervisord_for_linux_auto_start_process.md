@@ -3,7 +3,7 @@ title: 使用supvisord取代linux默认开机启动项
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-05 15:42:28
-status: draft
+draft: true
 tags: ["python","supvisord"]
 category: ["tools"]
 ---

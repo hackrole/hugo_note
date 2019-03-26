@@ -3,7 +3,7 @@ title: 使用python itertools库来取代mongodb的group分组操作.
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-06-09 15:40:50
-status: draft
+draft: true
 tags: ["python","mongodb"]
 category: ["programming"]
 ---

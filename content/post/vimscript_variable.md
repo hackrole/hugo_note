@@ -3,7 +3,7 @@ title: vim变量相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:35:44
-status: draft
+draft: true
 tags: ["vim"]
 category: ["tools"]
 ---

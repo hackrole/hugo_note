@@ -3,7 +3,7 @@ title: ruby koans笔记:基本类型
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-14 11:41:08
-status: draft
+draft: true
 tags: ["ruby"]
 category: ["programming"]
 ---

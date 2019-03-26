@@ -3,7 +3,7 @@ title: GAE datastore相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2013-09-13 15:12:17
-status: draft
+draft: true
 tags: ["GAE"]
 category: ["programming"]
 ---

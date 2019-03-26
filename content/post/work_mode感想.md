@@ -3,7 +3,7 @@ title: model实现感想
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-01-03 15:46:56
-status: draft
+draft: true
 tags: ["tips"]
 category: ["design"]
 ---

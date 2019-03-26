@@ -3,7 +3,7 @@ title: 如何正确的使用stackoverflow
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:25:23
-status: draft
+draft: true
 tags: ["tips"]
 category: ["design"]
 ---

@@ -3,7 +3,7 @@ title: 妙语连珠
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-04-02 15:30:06
-status: draft
+draft: true
 tags: ["style","tips"]
 category: ["design"]
 ---

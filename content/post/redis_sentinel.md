@@ -3,7 +3,7 @@ title: redis sentinel(redis监控)
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-12-31
-status: draft
+draft: true
 tags: ["redis"]
 category: ["programming"]
 ---

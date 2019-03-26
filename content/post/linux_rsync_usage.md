@@ -3,7 +3,7 @@ title: 使用rsync来做文件备份和同步
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-29 15:04:33
-status: draft
+draft: true
 tags: ["rsync"]
 category: ["tools"]
 ---

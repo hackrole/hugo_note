@@ -10,8 +10,7 @@ category: ["programming"]
 
 
 
-playbook组织
--------------
+# playbook组织
 
 应该按项目组织playbook, 而不是按组件.
 
@@ -26,8 +25,7 @@ playbook的粒度控制在项目级别.
 需要加密的信息使用ansible-vault
 
 
-playbook编写注意
-----------------
+# playbook编写注意
 
 尽量保证每个playbook考虑周全,不然出现第一次跑ok,第二次跑就挂的情况.
 
@@ -35,35 +33,46 @@ playbook编写注意
 
 个人更喜欢用supervisor取代systemctl/init.d, supervisor加载新配制的方式是,
 使用service supervisor restart的方式有不少问题.
-.. code-block:: 
 
-    - name: reload supervisor
-      cmd: supervisorctl reread && supervisorctl update
-    - name: ensure programming running
-      supervisorctl:
-        name: program
-        state: started
+```ansible
+- name: reload supervisor
+  cmd: supervisorctl reread && supervisorctl update
+  - name: ensure programming running
+    supervisorctl:
+    name: program
+    state: started
+```
 
 supervisor记得设置minfds, 避免因为ulimits的问题无法启动进程,如elasticsearch
 
 
-ansible系统加固
-----------------
+# ansible系统加固
 
 ansible有个用来加固系统的roles, 建议加上.
 包亏一些sysctl配置都是运行linux server需要的.
 
+# 常用module
 
-roles
-------
+## debug/ping
+
+## copy/file/template/content_in_file
+
+## user/group
+
+## services/supervisorctl
+
+# roles
 
 多使用roles, 使用ansible-galaxy查找roles, 每个roles记得查看支持的系统版本,
 看看role的源码, 也可适当作出修改.
 
-测试
------
+# 测试
 
 molecule官方推出的测试roles, playbook的工具, 文档比较少.
 基于docker自动跑roles,完成测试.
 
 本地也可以使用vagrant来测试.
+
+# best practice
+
+TODO link

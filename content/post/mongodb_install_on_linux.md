@@ -3,7 +3,7 @@ title: linux(ubuntu)下安装mongodb服务器
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:34:30
-status: draft
+draft: true
 tags: ["mongodb"]
 category: ["programming"]
 ---

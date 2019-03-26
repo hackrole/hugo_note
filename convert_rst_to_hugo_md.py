@@ -52,7 +52,7 @@ def get_new_header(header):
     if 'status' in header:
         result.append('status: %s' % header['status'])
     else:
-        result.append('status: draft')
+        result.append('draft: true')
     if 'tags' in header:
         tags = ','.join(['"' + tag + '"' for tag in header['tags']])
         result.append('tags: [%s]' % tags)

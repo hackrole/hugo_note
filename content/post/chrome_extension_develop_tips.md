@@ -3,7 +3,7 @@ title: chrome extension开发tips
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-28 09:40:38
-status: draft
+draft: true
 tags: ["chrome"]
 category: ["programming"]
 ---

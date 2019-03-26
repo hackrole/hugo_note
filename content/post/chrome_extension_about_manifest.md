@@ -3,7 +3,7 @@ title: chrome-extension manifest文件详解
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-19 16:21:51
-status: draft
+draft: true
 tags: ["chrome"]
 category: ["programming"]
 ---

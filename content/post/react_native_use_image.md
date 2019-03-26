@@ -3,7 +3,7 @@ title: react-native中的如何加载图片
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-03-02 15:53:58
-status: draft
+draft: true
 tags: ["react","react-native"]
 category: ["programming"]
 ---

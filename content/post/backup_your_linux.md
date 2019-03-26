@@ -3,7 +3,7 @@ title: 为你的linux制作备份
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-03-24 16:23:51
-status: draft
+draft: true
 tags: ["tips"]
 category: ["tools"]
 ---

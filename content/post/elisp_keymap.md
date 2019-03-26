@@ -3,7 +3,8 @@ title: elisp keymap相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-01-03 14:58:24
-status: draft
+serials: ["elisp"]
+draft: false
 tags: ["emacs"]
 category: ["tools"]
 ---

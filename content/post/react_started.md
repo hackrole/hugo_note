@@ -3,7 +3,7 @@ title: react起步须知
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:26:01
-status: draft
+draft: true
 tags: ["react","tips"]
 category: ["programming"]
 ---

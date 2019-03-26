@@ -3,7 +3,7 @@ title: nodejs入门
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-01-06 16:01:57
-status: draft
+draft: true
 tags: ["nodejs","node"]
 category: ["programming"]
 ---

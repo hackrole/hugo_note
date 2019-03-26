@@ -9,7 +9,6 @@ Author: hackrole
 
 # Sort Algorithms note
 
-TODO 
 
 ## heap sort
 
@@ -103,9 +102,10 @@ def quicksort(A, p, r):
 
 ## others
 
-一般的递归算法可以用一个stack配置迭代来实现。
+一般的递归算法可以用一个stack配合迭代来实现。
 原理为通过stack来保存要执行的状态。
 
 一般线性递归可以通过添加一个状态参数，优化为可尾递归。
+
 线性递归一般可以直接转化为迭代写法.
 树形递归一般要通过stack来实现。

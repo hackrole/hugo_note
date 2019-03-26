@@ -3,7 +3,7 @@ title: ruby下的irb/iruby如何使用补全
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 10:20
-status: draft
+draft: true
 tags: ["ruby","tips"]
 category: ["programming"]
 ---

@@ -3,7 +3,7 @@ title: 关于team合作与管理
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-06-28 12:57:48
-status: draft
+draft: true
 tags: ["work","plan"]
 category: ["team"]
 ---
@@ -11,15 +11,13 @@ category: ["team"]
 
 
 
-关于离开舒适区
---------------
+# 关于离开舒适区
 
 不是说要进入痛苦区，尴尬区。
 
 说白里是离开懒惰区，或者再多点就是使用新方式，接触新内容。
 
-关于KPI和工作汇报
------------------
+# 关于KPI和工作汇报
 
 建立统一的产品愿景和方向，
 由某个人为他人合理分配任务,而不是让执行者盲目不知所措。

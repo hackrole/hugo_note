@@ -3,7 +3,7 @@ title: superviosr配置小节
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-26 16:10:34
-status: draft
+draft: true
 tags: ["python","supervisord"]
 category: ["tools"]
 ---

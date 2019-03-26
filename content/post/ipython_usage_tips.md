@@ -3,7 +3,7 @@ title: ipython使用技巧
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-03-21 17:18:33
-status: draft
+draft: true
 tags: ["python","ipython","tools"]
 category: ["programming"]
 ---

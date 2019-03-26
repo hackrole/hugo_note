@@ -3,7 +3,7 @@ title: mongodb库设计问题
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-07-31 17:49:57
-status: draft
+draft: true
 tags: ["mongodb","mongoengine","python"]
 category: ["programming"]
 ---

@@ -3,7 +3,7 @@ title: golang入门
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-04-21 15:17:04
-status: draft
+draft: true
 tags: ["golang"]
 category: ["programming"]
 ---

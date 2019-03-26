@@ -3,7 +3,7 @@ title: 移动开发版本管理相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08
-status: draft
+draft: true
 tags: ["tips"]
 category: ["design"]
 ---
@@ -11,8 +11,7 @@ category: ["design"]
 
 
 
-before or afeter
-----------------
+# before or afeter
 
 做app开发，所有人都是倾向于尽一切可能把逻辑放到后台，
 什么提示文字，按钮图标等. 

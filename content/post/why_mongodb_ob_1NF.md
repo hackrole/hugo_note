@@ -3,7 +3,7 @@ title: mongodb与第一范式
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08
-status: draft
+draft: true
 tags: ["mongodb","SQL"]
 category: ["programming"]
 ---

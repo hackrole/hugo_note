@@ -3,7 +3,7 @@ title: linux下配置iptables
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-08-19 16:29:27
-status: draft
+draft: true
 tags: ["iptables"]
 category: ["tools"]
 ---

@@ -3,7 +3,7 @@ title: emacs sql-mode使用
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-20 16:36:42
-status: draft
+draft: true
 tags: ["emacs"]
 ---
 

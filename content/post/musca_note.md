@@ -3,7 +3,7 @@ title: musca笔记
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-03-23 15:31:41
-status: draft
+draft: true
 tags: ["musca-wm"]
 category: ["tools"]
 ---

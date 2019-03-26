@@ -3,7 +3,7 @@ title: plan on the way
 author: hackrole
 email: hack.role@gmail.com
 date: 2017-03-29 15:58:07
-status: draft
+draft: true
 tags: ["plan","works"]
 ---
 
