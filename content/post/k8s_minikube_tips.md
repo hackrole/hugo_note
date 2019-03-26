@@ -3,7 +3,7 @@ title: minikube tips
 author: hackrole
 email: hack.role@gmail.com
 date: 2018-08-03 10:23:01
-status: published
+draft: false
 tags: ["kubernates","docker","tips"]
 category: ["tools"]
 ---

@@ -3,7 +3,7 @@ title: vim中使用riv插件输出表格
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-02-02 16:29:59
-status: published
+draft: false
 tags: ["vim"]
 category: ["tools"]
 ---

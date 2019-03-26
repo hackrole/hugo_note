@@ -4,7 +4,7 @@ author: hackrole
 email: hack.role@gmail.com
 date: 2014-01-02 14:55:08
 serials: ["elisp"]
-status: published
+draft: false
 tags: ["elisp","emacs"]
 category: ["tools"]
 ---

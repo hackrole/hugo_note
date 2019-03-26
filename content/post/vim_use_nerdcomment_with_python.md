@@ -3,7 +3,7 @@ title: vim中使用nerdcomment来注释python代码tips
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-02-03 11:06:47
-status: published
+draft: false
 tags: ["vim","python"]
 category: ["tools"]
 ---

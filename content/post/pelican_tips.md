@@ -3,7 +3,7 @@ title: pelican使用tips
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-29 11:15:34
-status: published
+draft: false
 tags: ["pelican"]
 category: ["programming"]
 ---

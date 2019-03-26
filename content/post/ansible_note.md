@@ -3,7 +3,7 @@ title: anisble note
 author: hackrole
 email: hack.role@gmail.com
 date: 2019-01-23 10:30:39
-status: published
+draft: false
 tags: ["ansible"]
 category: ["programming"]
 ---

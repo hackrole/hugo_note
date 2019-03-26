@@ -3,7 +3,7 @@ title: 文章写作tips
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-20 10:04:46
-status: published
+draft: false
 tags: ["tips"]
 category: ["design"]
 ---

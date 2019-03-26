@@ -3,7 +3,7 @@ title: 编译安装ruby问题总结
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-01-14 17:59:31
-status: published
+draft: false
 tags: ["ruby","tips"]
 category: ["programming"]
 ---
