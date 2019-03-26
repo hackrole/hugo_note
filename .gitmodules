@@ -18,4 +18,4 @@
 	url = https://github.com/de-souza/hugo-flex.git
 [submodule "themes/yinwang"]
 	path = themes/yinwang
-	url = https://github.com/chinanf-boy/gohugo-theme-yinwang.git
+	url = git@github.com:hackrole/gohugo-theme-yinwang.git
