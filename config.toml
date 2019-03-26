@@ -20,11 +20,11 @@ weight = 10
 name = "Github"
 url = "https://github.com/hackrole"
 [[menu.main]]
-name = "标签"
+name = "Tags"
 url = "/tags"
-# [[menu.main]]
-# name = "about"
-# url = "/about"
+[[menu.main]]
+name = "about"
+url = "/about"
 
 [[params.social]]
     name = "github"

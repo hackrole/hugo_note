@@ -4,6 +4,7 @@ author: hackrole
 email: hack.role@gmail.com
 date: 2014-07-31 17:49:57
 draft: false
+series: mongodb
 tags: ["mongodb","mongoengine","python"]
 category: ["programming"]
 ---
