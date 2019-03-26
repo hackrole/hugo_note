@@ -3,16 +3,13 @@ title: redis持久化配置
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:35:13
-draft: true
+draft: false
 tags: ["redis"]
 category: ["programming"]
 ---
 
 
-
-
-持久化级别
-----------
+# 持久化级别
 
 redis提供如下四中持久化方案:
 
@@ -25,8 +22,7 @@ redis提供如下四中持久化方案:
 
 4) 结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。
 
-RDB优缺点
-~~~~~~~~~
+## RDB优缺点
 
 优点:
 
@@ -42,8 +38,7 @@ RDB优缺点
 
 2) fork有可能堵塞导致暂不可用.
 
-AOF优缺点
-~~~~~~~~~
+## AOF优缺点
 
 优点:
 
@@ -63,8 +58,7 @@ AOF优缺点
 3) 有很稀有的bug存在，RDB没有此类bug.
 
 
-如何使用
---------
+# 如何使用
 
 1) 如果想要更强的数据一致性，则应该组合使用AOF和RDB
 
@@ -74,24 +68,20 @@ AOF优缺点
 
 redis最终会合并两种持久化策略，不过时间比较久
 
-其他
-----
+# 其他
 
-快照
-~~~~
+## 快照
 
 默认情况下RDB数据被存到dump.rdb文件下.
 
 可以手动掉 save/bgsave命令调用.
 
-配置保存策略::
+配置保存策略
+```
+# save <seconds> <keys>
+save 5 10
+save 1 50
+```
 
-    save <seconds> <keys>
-    ....
 
 RDB数据会先写到临时文件，然后替换掉旧的RDB文件.
-
-
-.. TODO:
-
-   其他

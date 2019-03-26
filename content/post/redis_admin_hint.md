@@ -3,18 +3,16 @@ title: redis服务管理需知
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:34:49
-draft: true
+draft: false
 tags: ["redis"]
 category: ["programming"]
 ---
 
 
 
-
 介绍一些redis部署时的注意事项
 
-注意事项
---------
+# 注意事项
 
 1) 建议使用linux部署。
 
@@ -36,8 +34,7 @@ category: ["programming"]
 
 10) 注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip
 
-aws注意事项
------------
+# aws注意事项
 
 1) 使用HWS实例，不要使用pv实例
 
@@ -47,7 +44,6 @@ aws注意事项
 
 4) 你可能想尝试diskless-sync. 如果replication-sync有问题的话。
 
-redis升级或重启建议
--------------------
+# redis升级或重启建议
 
-.. TODO:
+TODO

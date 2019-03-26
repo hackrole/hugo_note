@@ -3,7 +3,7 @@ title: linux(ubuntu)下安装mongodb服务器
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:34:30
-draft: true
+draft: false
 tags: ["mongodb"]
 category: ["programming"]
 ---
@@ -11,10 +11,9 @@ category: ["programming"]
 
 
 
-概述
-----
+# 概述
 
-安装过程可以参考观望，文档很详细.
+安装过程可以参考官网，文档很详细.
 
 ubuntu官网源有提供mongodb安装，但是一般版本都比较落后，更新不及时。
 所以可以采用mongodb提供的安装源，安装最新的mongodb.
@@ -28,54 +27,64 @@ mongodb官网有5个主要的包:
 4) mongodb-org-shell. mongo-shell
 5) mongodb-org-tools. mongoimport/mongodump/bsondump/mongoexport/retore/stat/perf/oplog等工具.
 
-安装过程
---------
+# 安装过程
 
-具体过程如下::
+具体过程如下
 
-    # import mongodb GPK key
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+```bash
+# import mongodb GPK key
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
-    # add source
-    # 12.04
-    echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-    # 14.04
-    echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+# add source
+# 12.04
+echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+# 14.04
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-    sudo apt-get update
-    sudo apt-get install -y mongodb-org
-
-
-如果想安装特定版本mongodb::
-
-    # 如果只mongodb-org=3.2.0，会安装最新版本mongodb. 后面的必须也制定。
-    sudo apt-get install -y mongodb-org=3.2.0 mongodb-org-server=3.2.0 mongodb-org-shell=3.2.0 mongodb-org-mongos=3.2.0 mongodb-org-tools=3.2.0
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
 
 
-如果想使用老版本mongodb，同时阻止upgrade更新::
 
-    echo "mongodb-org hold" | sudo dpkg --set-selections
-    echo "mongodb-org-server hold" | sudo dpkg --set-selections
-    echo "mongodb-org-shell hold" | sudo dpkg --set-selections
-    echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
-    echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+如果想安装特定版本mongodb
+
+```bash
+# 如果只mongodb-org=3.2.0，会安装最新版本mongodb. 后面的必须也制定。
+sudo apt-get install -y mongodb-org=3.2.0 mongodb-org-server=3.2.0 mongodb-org-shell=3.2.0 mongodb-org-mongos=3.2.0 mongodb-org-tools=3.2.0
+```
+
+
+如果想使用老版本mongodb，同时阻止upgrade更新
+
+```bash
+echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+```
+
 
 
 补充:手动安装mongodb
 --------------------
 
-实例过程如下::
+实例过程如下
 
-    # 下载可用包.
-    curl -O https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.2.0.tgz
+```bash
+# 下载可用包.
+curl -O https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.2.0.tgz
 
-    # 解压
-    tar -zxvf mongodb-linux-i686-3.2.0.tgz
+# 解压
+tar -zxvf mongodb-linux-i686-3.2.0.tgz
 
-    # copy to right locationi. and set $PATH.
-    mkdir -p mongodb
-    cp -R -n mongodb-linux-i686-3.2.0/ mongodb
-    export PATH=<mongodb-install-directory>/bin:$PATH
+# copy to right locationi. and set $PATH.
+mkdir -p mongodb
+cp -R -n mongodb-linux-i686-3.2.0/ mongodb
+export PATH=<mongodb-install-directory>/bin:$PATH
+```
+
 
 补充:源码安装
 -------------

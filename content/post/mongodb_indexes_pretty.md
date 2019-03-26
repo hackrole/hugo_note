@@ -3,7 +3,7 @@ title: mongodb索引建立和优化
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-06-27 17:38:06
-draft: true
+draft: false
 tags: ["mongodb","tips"]
 category: ["programming"]
 ---
@@ -22,19 +22,18 @@ category: ["programming"]
 
 + nosqlfan是个学习和找问题的好地方
 
-mongodb索引简介
----------------
+# mongodb索引简介
 
-基本操作
-~~~~~~~~
+# 基本操作
 
-索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用::
+索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
+```js
+db.things.ensureIndex({j:1})
+```
 
-    db.things.ensureIndex({j:1})
 
 
-默认单列/文档/组合索引
-~~~~~~~~~~~~~~~~~~~~~~
+## 默认单列/文档/组合索引
 
 + 每个集合都会有个默认索引 `_id` ,该字段不能删除
 
@@ -48,13 +47,12 @@ mongodb索引简介
 
 + 唯一索引
 
-.. code::
+```js
+db.ensureIndex({j:1}, {unique: true})
+db.ensureIndex({j:1}. {unique: true, dropDups: true})
+```
 
-    db.ensureIndex({j:1}, {unique: true})
-    db.ensureIndex({j:1}. {unique: true, dropDups: true})
-
-特殊索引
---------
+# 特殊索引
 
 mongodb支持2d索引，用于地理位置服务。
 
@@ -76,39 +74,36 @@ mongodb支持两种2d索引:
 不同的索引在用于地理位置服务时的处理方式不同，具体可以参见：
 http://www.tuicool.com/articles/MVrqAn
 
-索引管理
---------
+# 索引管理
 
 建立索引:
 
-.. code::
-
-    db.ensureIndex({j:1})
-    db.ensureIndex({j:1}, {name: "j"})
-    db.ensureIndex({j:1}, {background: true})
-    db.ensureIndex({j: -1})
-    db.ensureIndex({j:1, i: 1})
-    db.ensureIndex({j:1, i.j: 1})
-    db.ensureIndex({j:1}, {unique: true, dropDups: true})
-    db.ensureIndex({j: "2d"}, {'min': -1000, "max": 1000})
-
-
+```js
+db.ensureIndex({j:1})
+db.ensureIndex({j:1}, {name: "j"})
+db.ensureIndex({j:1}, {background: true})
+db.ensureIndex({j: -1})
+db.ensureIndex({j:1, i: 1})
+db.ensureIndex({j:1, i.j: 1})
+db.ensureIndex({j:1}, {unique: true, dropDups: true})
+db.ensureIndex({j: "2d"}, {'min': -1000, "max": 1000})
+```
 查看索引:
 
-.. code::
-
-    db.colletions.getIndexes()
-    db.system.indexes.find()
+```js
+db.colletions.getIndexes()
+db.system.indexes.find()
+```
 
 更新索引:
 
-.. code::
-
-    db.collection.reIndex()
+```js
+db.collection.reIndex()
+```
 
 删除索引:
 
-.. code::
-
-    db.collection.dropIndexes()
-    db.collection.dropIndex()
+```js
+db.collection.dropIndexes()
+db.collection.dropIndex()
+```

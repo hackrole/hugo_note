@@ -2,8 +2,9 @@
 title: redis分片相关
 author: hackrole
 email: hack.role@gmail.com
-date: 2015/12/30
-draft: true
+date: 2015-12-30 15:37:33
+serials: ["redis"]
+draft: false
 tags: ["redis"]
 category: ["programming"]
 ---
@@ -13,20 +14,17 @@ category: ["programming"]
 
 介绍redis分片相关内容.
 
-分片相关
---------
+# 分片相关
 
 分片是将数据分布到不同的redis实例上, 让每个redis服务实例只保存部分数据。
 
-为何需要分片
-~~~~~~~~~~~~
+## 为何需要分片
 
 1) 突破单机的内存和磁盘存储限制.
 
 2) 复用多机的cpu计算和网络传输能力。
 
-分片方法
-~~~~~~~~
+## 分片方法
 
 分片有不同的实现方式, 如
 
@@ -36,8 +34,7 @@ category: ["programming"]
 2) hash分片. 对每个key通过hash函数，计算到对应的实例。
    redis中部分client和proxy实现了一致性hash来做分片处理。
 
-分片实现层面
-~~~~~~~~~~~~
+## 分片实现层面
 
 分片可以做不同层面实现.
 
@@ -50,8 +47,7 @@ category: ["programming"]
 3) 查询路由. 查询被发到集群中任一台实例上, 由实例来转发到正确的实例上.
    redis集群实现了一个混合风格的查询路由，需要配合client端使用(不是由redis来做定位，而是重定向client来实现).
 
-分片的缺点
-~~~~~~~~~~
+## 分片的缺点
 
 1) 跨越多个key的操作通常都不能使用, 部分操作可以通过间接的方式实现.
 
@@ -64,16 +60,14 @@ category: ["programming"]
 5) 增加和删除节点/容量比较麻烦，是要平衡重新分片。redis集群支持这一个特性。
    client/proxy实现需要通过Pre-sharding来支持。
 
-数据库还是缓存
-~~~~~~~~~~~~~~
+## 数据库还是缓存
 
 redis作为缓存和数据库时，对待分片的策略有所不同.
 
 缓存可以容忍定位失败。而数据库不允许。
 所以在增加和删除节点时，或是部分节点失败时，数据库要良好的处理再分片/再路由操作。
 
-redis分片
----------
+# redis分片
 
 1) redis集群是自动分片和高可用的首选方案. 具体参见 redis_cluster::
 

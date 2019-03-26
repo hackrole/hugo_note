@@ -3,16 +3,13 @@ title: redis数据结构介绍
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:31:57
-draft: true
+draft: false
 tags: ["redis"]
 category: ["programming"]
 ---
 
 
-
-
-概述
-----
+# 概述
 
 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.
 
@@ -28,11 +25,9 @@ redis中主要包含如下数据类型:
 
 不同数据结构可以根据需要解决不同的任务集。
 
-类型具体说明
-------------
+# 类型具体说明
 
-redis-key
-~~~~~~~~~
+## redis-key
 
 redis-key只能是字符串，并且是2进制安全。
 
@@ -44,8 +39,7 @@ redis-key只能是字符串，并且是2进制安全。
 6) exists判断key是否存在, del用于删除key, keys用于列出keys.type获取key类型.
 7) ttl/expire用于获取和设置过期时间. persist移除key的过期设置。pttl/pexpire返回/设置millsecond级别的过期时间.
 
-redis-string
-~~~~~~~~~~~~
+## redis-string
 
 最简单的数据结构，应该也是最常用的数据结构(缓存).
 
@@ -59,8 +53,7 @@ redis-string
 
 5) mset/mget一次对多个key做操作.
 
-redis-list
-~~~~~~~~~~
+## redis-list
 
 列表, 链表实现, 在列表中间插入/移除元素的复杂度为O(1), 查找元素的复杂度为O(N).
 
@@ -86,8 +79,7 @@ redis-list
 
 5) llen用于返回列表长度.
 
-redis-hash
-~~~~~~~~~~
+## redis-hash
 
 redis上的hash实现,field/value只能是string.
 
@@ -103,8 +95,7 @@ redis上的hash实现,field/value只能是string.
 
 2) 内存的利用率比多key-value更高, **XXX**.
 
-redis-set
-~~~~~~~~~
+## redis-set
 
 集合, 支持并集/交集，判断元素是否在操作.
 
@@ -116,8 +107,7 @@ redis-set
 
 4) **TODO**
 
-redis-sorted-set
-~~~~~~~~~~~~~~~~
+## redis-sorted-set
 
 排序列表, 不是按插入顺序而是人为自定的score来拍寻。底层使用的是复合机构实现.
 
@@ -129,12 +119,10 @@ redis-sorted-set
 
 4) **TODO** zrangebyscore/zrangebylex
 
-redis-bitmaps
-~~~~~~~~~~~~~
+## redis-bitmaps
 
 **TODO**
 
-redis-HyperLogLogs
-~~~~~~~~~~~~~~~~~~
+## redis-HyperLogLogs
 
 **TODO**

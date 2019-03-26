@@ -3,7 +3,7 @@ title: mongodb库设计问题
 author: hackrole
 email: hack.role@gmail.com
 date: 2014-07-31 17:49:57
-draft: true
+draft: false
 tags: ["mongodb","mongoengine","python"]
 category: ["programming"]
 ---
@@ -22,11 +22,9 @@ mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活
 
 使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.
 
-mongoengine问题
----------------
+# mongoengine问题
 
-索引问题
-~~~~~~~~
+## 索引问题
 
 索引应该跟document分开.并且有自动化建立和删除的command.
 
@@ -36,24 +34,19 @@ mongoengine问题
 
 2) 有时会失效，没有建立对应的索引
 
-listField校验问题
-~~~~~~~~~~~~~~~~~
+## listField校验问题
 
 listField没法做长度限制
 set/sortset/max-len list/ sort-list等结构没有实现
 
-不支持自定义字段验证/文档级验证
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## 不支持自定义字段验证/文档级验证
 
 
-pre_save/after_save hooks
-~~~~~~~~~~~~~~~~~~~~~~~~~
+## pre_save/after_save hooks
 
 
-不可存储的EmbdDocumment
-~~~~~~~~~~~~~~~~~~~~~~~
+## 不可存储的EmbdDocumment
 **TODO** 待考虑
 
-可扩展的Document
-~~~~~~~~~~~~~~~~
+## 可扩展的Document
 **TODO** 待考虑
