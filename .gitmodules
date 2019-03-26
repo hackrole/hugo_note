@@ -16,6 +16,3 @@
 [submodule "themes/hugo-flex"]
 	path = themes/hugo-flex
 	url = https://github.com/de-souza/hugo-flex.git
-[submodule "themes/yinwang"]
-	path = themes/yinwang
-	url = git@github.com:hackrole/gohugo-theme-yinwang.git
