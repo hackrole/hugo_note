@@ -3,6 +3,7 @@ title: redis持久化配置
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:35:13
+series: redis
 draft: false
 tags: ["redis"]
 category: ["programming"]

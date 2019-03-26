@@ -4,6 +4,7 @@ author: hackrole
 email: hack.role@gmail.com
 date: 2015-12-31
 draft: false
+series: redis
 tags: ["redis"]
 category: ["programming"]
 ---

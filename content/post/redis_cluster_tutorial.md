@@ -3,6 +3,7 @@ title: redis集群教程
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-12-30
+series: redis
 draft: false
 tags: ["redis","cluster"]
 category: ["programming"]

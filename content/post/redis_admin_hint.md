@@ -3,6 +3,7 @@ title: redis服务管理需知
 author: hackrole
 email: hack.role@gmail.com
 date: 2016-01-08 14:34:49
+series: redis
 draft: false
 tags: ["redis"]
 category: ["programming"]

@@ -3,7 +3,7 @@ title: redis分片相关
 author: hackrole
 email: hack.role@gmail.com
 date: 2015-12-30 15:37:33
-serials: ["redis"]
+series: redis
 draft: false
 tags: ["redis"]
 category: ["programming"]

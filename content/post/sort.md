@@ -7,10 +7,8 @@ Author: hackrole
 ---
 
 
-# Sort Algorithms note
 
-
-## heap sort
+# heap sort
 
 1) in-place sort algorithms
 
@@ -58,7 +56,7 @@ def heap_sort(A):
        max_heap(A, 1)
 ```
 
-# questions
+## questions
 
 1) 左式堆/二项堆
 
@@ -66,7 +64,7 @@ def heap_sort(A):
 
 3) 不用递归实现(stack?)
 
-## quick sort
+# quick sort
 
 
 1) in-place sort
@@ -74,10 +72,10 @@ def heap_sort(A):
 2) O(nlgn)
 
 
-### 要点
+## 要点
 
 
-### 步骤
+## 步骤
 
 ```python
 # 基于元素分裂数组为两个
@@ -100,7 +98,7 @@ def quicksort(A, p, r):
         quicksort(A, q+1, r)
 ```
 
-## others
+# others
 
 一般的递归算法可以用一个stack配合迭代来实现。
 原理为通过stack来保存要执行的状态。
