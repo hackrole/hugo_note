@@ -10,6 +10,8 @@ draft: false
 
 A python-developer work in Shanghai now.
 
+Love TDD and only TDD.
+
 [github](https://github.com/hackrole)
 
 [twitter](https://twitter.com/Daipeng3)
