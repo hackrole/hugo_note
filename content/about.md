@@ -1,7 +1,9 @@
 ---
 title: "About"
 date: 2019-03-26T13:49:21+08:00
-draft: true
+author: hackrole
+email: hack.role@gmail.com
+draft: false
 ---
 
 # about me
