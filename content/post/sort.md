@@ -62,6 +62,14 @@ def heap_sort(A):
 
 2) 堆的插入算法
 
+```python
+# add to end, then remax_heap
+def insert(h, i):
+    # not consider out cap
+    h[h.len] = i
+    max_heap(h, h.len)
+```
+
 3) 不用递归实现(stack?)
 
 # quick sort
