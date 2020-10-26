@@ -1,0 +1,91 @@
+* what's big data
+1) can not be handled by regular tols
+2) 3V(Volume, Volocity高速率, variety多形式) additional V(value 价值密度低)
+3) google: big data is easy to get but hard to dig value
+
+* big data things
+
+** get data
+
+** analizer hive/spark
+
+** 存储hdfs/gfs
+
+** visualizery superset/hue
+
+* shard/partition and routing
+
+** hash key partition
+only point query, not support range query.
+Dynamo Cassaandra Riak Voldmort Membase
+
+round robin/ virtual bucket / consistant hash
+
+TODO DHT(page 16)
+Finger Table
+
+** range partition
+bigtable
+LSM TODO
+
+* replicas and consistance
+
+** CAP(Consistency/ Availabliity/ Partitioni Tolerance) Eric Brewer
+
+** CAP Reloaded
+1) P is rarely
+2) not just A/C, chosessable
+
+** ACID(Atomicity Consistency Isolation Durability)
+
+** BASE(Basically available/ Soft State/Eventual Consistency)
+
+** Idempotent(幂等性)
+f(f(x)) = f(x)
+
+** TODO (仔细整理博客) Consistency Model
+强一致性，弱一致性, 最终一致性, 因果一致性, read-your-write一致性, 会话一致性, 单调一致性
+
+*** inconsistency Window
+
+** Consistency protocol
+
+*** 2PC(Two-Phrase Commit) 3PC(add Pre-Commmit)
+超时判断和参与者互询机制
+
+*** TODO Vector Clock
+
+*** RWN protocol
+Dynamo KV
+
+*** TODO Paoxs protocol(Lesile Lamport)
+参考文献 9 10 11
+
+Replicated State Maachines
+
+**** Non-Byzantine Model
+
+*** TODO Raft Protocol(take note)
+1) 分解法: 领导选举, Log复制, 安全性
+2) Paxos P2P -> Master-Slave
+
+* data structure and arithmetic
+
+** TODO Bloom Filter (note it)
+No False Negative, but possible True Negative
+1) control True Negative Rate
+   P = (1 - e -kn/m)k
+   k =  m/n ln2
+   m = nlnp /(ln2)2
+2) canot delete members
+** TODO skiplist (note it)
+
+** TODO LSM tree
+turn multiple random write into sequence write
+
+** TODO merkel hash tree
+
+** TODO snappy compress
+LZ77 LZSS
+
+** cuckoo hasking

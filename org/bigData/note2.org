@@ -1,0 +1,165 @@
+* cluster manage and schedule
+** schedule problem
+1) resource difference and workloaddifference
+** data locality
+移动计算代码到数据所在地，而不是移动数据到计算所在地。(大叔据场景)
+** schedule policy
+hungry or non-hungry(抢占/非抢占)
+** allocation Granularity(分配粒度)
+Job/ Task/ DAG
+
+Gang Scheduler/All-or-Nothing/增量满足/Resource hoarding(资源储备)
+** Starvation and Dead Lock
+** resource isolation
+docker/ mapreduce slot /yarn/mesos/ LXC / google lmctfy/cloud Foundry Warden
+** resource manage/schedule Paradiam
+1) 集中式调度
+2) 两级调度
+3) 状态共享调度
+** resource schedule policy
+1) FIFO
+2) Fair
+3) Capacity
+4) Dely
+  
+* distributed coordinate system
+
+** google chubby
+粗粒度锁服务
+粗力度指锁的时间可以很长(小时或天级等), 可以降低服务的负载
+提供的能力: 针对目录/文件的加锁， 目录/文件的访问权限控制， 文件内容的存取，事件通知机制
+
+** yahoo zookeeper
+高吞吐的分布式协调系统
+TODO ZAB协议
+Reply Log/Fuzzy Snapshot
+
+
+znode
+持久节点/临时节点
+观察标识与通知, 自增属性
+1) leader Election TODO(伪码)
+2) configuration management
+3) Group membership
+4) task allocation
+5) Locks management
+6) Double Barries(路障同步，双向路障同步)
+
+
+* distributed communication
+序列化rpc, message-queue, multicast(Gossip)
+
+** rpc
+IDL(interface Description language)
+
+ google protobuf/grpc
+ facebook thrift
+ apache avro
+
+** message queue
+kafka
+
+ISR副本管理机制
+
+SendFile 调用
+
+** application-level multi-broadcast
+p2p 星型结构 DHT 环形结构 树状结构 无结构
+Gossip(best effort/Direct Mail, anti-entropy, Rumor Mongering)
+
+    Cassandra源码解析: http://blog.csdn.net/firecoder/article/detail/5707539
+
+
+* data transport
+chukwa/ scribe
+
+
+
+** LinkedIn databus
+at-least-once
+1) 近实时性
+2) 数据回溯，容错能力
+3) 主题订阅, 传输性能优化
+
+** Facebook wormhole
+
+** apache sqoop
+
+* distributed file-system
+
+** google GFS adn Colossus
+
+** HDFS
+High Availability/ NameNode Federation
+NameNode/DataNode/Secondary NameNode/Client
+fsimage/editlog(write-ahead-log)
+
+Cloudera QJM(Quorum Journal Manager) HA
+
+NameNode Feration(NameNode Shard)
+
+** TODO facebook haystack
+object storage system(blob)
+一次写入，多次读取,从不更改，很少删除
+
+physical Volume/ Logical Volume
+
+** RCFile/Parquet/Dremel
+hive/Dermel/Impala
+
+row/Column/mixture 行式/列式/混合存储
+
+*** row缺陷
+1) 部分读取效率不高
+2) 压缩效率不高
+3) 面对多null数据存储效率不高
+
+
+*** Column
+column Group/Column famly
+
+1) 记录拼接问题
+
+
+
+
+*** TODO Dremel
+
+*** TODO twitter Parquet
+
+*** TODO Erasure Code
+Maximum Distance Separable codes(MDS)极大距离可分码
+Reed-Solomon(RS)
+Locally Repairable Codes(LRC) 局部可修复编码
+
+** Reed-Solomon LRC(erasure code)
+
+* 内存KV数据库
+RAMCloud
+redis
+membase/couchbase
+
+* Column database
+
+bigtable megastore spanner
+
+
+** TODO big-table 论文整理blog
+
+** bigtable
+列族，列描述符 Column Families/Column Qualifier
+range-based tablet
+SSTable MemTable
+
+MetaData table(元数据管理)
+MetaData table:Root Tablet
+
+
+合并 Compaction: minor compaction/merging compaction/Major compaction
+
+** yahoo hputs
+
+** google megastore
+
+** spanner
+TrueTime机制 as Serialiazation Order

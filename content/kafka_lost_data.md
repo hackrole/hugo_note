@@ -4,7 +4,7 @@ date: 2020-04-04
 author: hackrole
 email: hackrole.me@gmail.com
 tags: ['kafak', 'note']
-category: ['programing'']
+category: ['programing']
 draft: true
 ---
 
@@ -12,7 +12,7 @@ draft: true
 
 there was one porject named prism which I worked on. Its work is to listen from mulitple kafka topics,
 then standardizing the data and send them to one certain kafka topic, there was another worker which will 
-cosumer this topic and write the data to elasticsearch by batch. It use protobuf and avro as message serializer.
+cosumer this topic and write the data to elasticsearch in batch. It use protobuf and avro as message serializer.
 
 One day, I was telled the prism was stopped, after check it I found it was because the kafak producer has
 change there schema which was not compatibility to old schema, this make the prism worker stop to work.

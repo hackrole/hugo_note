@@ -1,0 +1,236 @@
+* machine-lerning: paradigm and architectue
+many maching-learning algorithm has iterator property.
+
+probelm
+1) reduce network cost
+2) long-tail
+3) error tolerance
+
+include
+1) supervision
+2) non-superision
+3) half-supervison
+4) reinforcement(强化)
+
+lost-function(损失函数)
+1) 0-1
+2) square
+3) abs
+4) logarithm
+
+经验风险, avg-lost
+1) 经验风险最小化
+2) 结构风险最小化
+
+supervision task
+1) classification
+2) regression
+
+non-superision
+1) clustering(聚类): 欧式距离，余弦相似性等
+
+数据规模巨大，参数空间巨大
+
+synchronous-paradigm vs asynchronous-paradigm vs half-synchronous-paradigm
+
+1) MR iterate
+2) TODO BSP
+3) TODO SSP
+
+
+** architecture
+
+*** mapreduce
+not fit to iterable machine-learning scena
+
+*** spark
+TODO RDD
+
+data transformation and data action
+lineage(血统记录) for error tolerance, better than checkpoint
+RDD partition: Narrow Dependency and wide Dependency(use checkpoint for error tolerance)
+
+**** MLLib Parameter Server
+
+* machine-learning: distribitive algorithm
+
+** compute-advertising: logistic regression
+eCPM (effective Cost Per Mille) 没千次展示可获取收入
+BidPrice 竞价关键词出价
+CTR (click through Rate) 广告点击率
+
+二项逻辑回归
+
+在线学习, 批学习, Mini-batch
+
+** recommented system: matrix decomposition 推荐系统， 矩阵分解
+基于群体统计的推荐
+基于内容的推荐
+基于协同过滤的推荐
+基于社交的推荐
+
+协同过滤
+1) 基于用于的KNN(user-based KNN)
+2) 基于物品的KNN(item-based KNN)
+3) matrix decomposition(矩阵分解)
+
+** search-engine: machine-learning sort
+
+** social data mining
+mix-cut, min-max cut, ratio cut
+spectral clustering(谱聚类)
+
+** deep-learning: DistBelief
+Hinton论文
+Repressentation Learning
+
+浅层结构机器学习算法:
+GMM(高斯混合模型), (HMM)隐式马尔可夫链， CRF(条件随机场), MaxEnt(最大熵模型), SVM(支持向量机), LR(逻辑回归), MLP(单隐层的多层感知机)
+
+* 增量计算 increment compute
+
+变化传播模式， 结果缓存复用模式
+
+** Precolater 谷歌咖啡因系统
+
+** kineograph 图挖掘系统
+
+* 附录
+网络拓扑结构, 存储金字塔层次结构, 常用硬件指标性能
+
+| cate                              | speed       |
+| l1 cache ref                      | 0.5ns       |
+| branch mispredict                 | 5ns         |
+| l2 cache ref                      | 7ns         |
+| mutex lock/unlock                 | 25ns        |
+| main memory ref                   | 100ns       |
+| compress 1k Bytes with zippy      | 3000ns      |
+| send 2k Bytes over 1 Gbps network | 20000ns     |
+| Read !MB sequentially from memory | 250000ns    |
+| Roud trip within same datacenter  | 500000ns    |
+| Disk Seek                         | 10000000ns  |
+| Read 1MB sequentially from disk   | 20000000ns  |
+| send packet CA->Netherlands->CA   | 150000000ns |
+
+** 大数据必读文献
+
+*** Lamport. Paxos Made Simple. ACM Sigact News. 2001 (Paxos)
+
+*** Diegn. In Search of an understanable Consenus Alorithm. (Raft)
+
+*** Key-Value database
+Dynamo(P2P, distribitive KV database)
+
+一致性哈希数据分片策略， 反熵协议, Merkle树, 向量时钟, Quorum-based一致性协议
+
+cassandra,Riak,Voldemort大量借鉴改论文
+
+*** the case for RAMClouds: Scalable High-performance storage Entirely in DRAM
+RAMCloud内存KV数据库
+
+*** redis
+
+*** GFS论文
+
+*** Haystack Facebook object-save-system
+一次写入，多次读取，从不更改，很少删除
+
+*** Erasure Code: Reed-Solomon(RS)
+A Tutorial on Reed-Solomon Coding for Fault-Tolerance in RAID-like system.
+
+热门数据多备份， 长尾冷数据采取纠删码
+
+Google second-edition GFS: Colossus
+Facebook HDFS-RAID
+
+*** XORing Elephants: Novel Erasue Codes for Big Data
+LRC, 解决RS恢复少量数据需要大量网络传输的问题
+
+*** Google BigTable论文
+
+*** Cassandra论文
+结合BigTable论文, Dynamo论文分析Cassandra源码
+
+*** Google Spanner论文
+Google's Globally-Distributed Database. 2012
+
+极强可扩展的全球部署的列式数据库
+
+*** Database: Linkedin's Change Data Capture Pipeline
+
+*** Google Chubby
+the chubby lock service for loosely-coupled distributed systems.
+
+*** zoopkeeper
+Wait-free coordination for internet-scale systems.
+
+处理领导选举，配置管理，members-manager, distributed-lock service
+
+*** 调度系统: YARN
+Yet Another Resource Negotiator
+
+*** Google Omega. flexible, scalable schedulers for large compute clusters.
+状态共享调度器,
+
+乐观并发控制, 对资源调度系统做了整体分类
+
+*** Apache Kafka
+
+低延时，高吞吐, 高可扩展,高可用性
+
+如何高校使用磁盘读写
+对操作系统缓存的高效利用
+
+*** google Mapreduce论文
+
+*** Dryad
+Distributed Data-Parallel Programs from Sequential Building Blocks
+DAG计算范型
+
+*** Twitter Storm
+流式计算
+
+*** Google MillWheel
+Fault-Tolerant Stream Processing at Internet Scale.
+
+了解如何设计一个符合实际需求的额典型流式计算系统
+
+*** apache Hive
+Hive A petabyte scale data warehouse using Hadoop.
+
+*** Dremel 谷歌新三驾马车之一
+Dremel: interactive analysis of web-scale datasets.
+Drill, Impala, Presto都有借鉴这里
+嵌套列式存储，树形服务器架构布局, MPP并行数据库执行引擎
+
+*** Impala
+Dremel开源版本
+
+*** Google Pregel
+Pregel: A system for large-scale graph processing
+BSP模型的大规模分布式图计算平台
+解决网页链接分析，社交数据挖掘
+
+消息驱动的，已图节点为中心, 同步计算框架.
+对开源图计算系统(Giraph, Hama)及后续改进都有很大影响
+
+*** PowerGraph: Distributed graph-parallel computation of natural graphs
+值得关注的离线挖掘类图计算系统
+
+目前主流图计算系统效率最高
+灵活的图计算架构，可模拟同步计算和异步计算
+
+*** Petuum: A Framework for Iterative-convergent Distributed ML
+参数服务器,
+Google DistBelief也是此架构
+
+*** Spark论文
+Resilient Distributed Datasets: A Fault-Tolerant Abstraction For in-Memory cluster computing
+
+底层的DAG批处理学习系统spark
+上层的流式计算系统D-Stream, GraphX, MLlib, MLBase
+
+基于内存的分布式存储抽象模型: 可恢复分布式数据集(RDD)
+
+*** Scalaing Up Maching Learning: Parallel and Distributed Approahes
+分布式机器学习的论文集(MPI, GPU, MapReduce, Dyrad)

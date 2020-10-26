@@ -63,6 +63,7 @@ create keymap
 ~~~~~~~~~~~~~
 
 | function                             | desc                                               | others                                   |
+|--------------------------------------|----------------------------------------------------|------------------------------------------|
 | (make-sparse-keymap &optional prompt | create and return a new keymap with no entries     | the usually keymap you need              |
 | (make-keymap &optional prompt)       | create and return a new keymap with char-tables    | use this if you want bind a lots of keys |
 | (copy-keymap keymap)                 | return a copy of keymap, recursive copy sub keymap | recursive copy fails on function keymap  |
@@ -79,6 +80,7 @@ keymap继承
 keymap可以继承其他keymap(单继承，多继承有其他实现方式),继承的逻辑和一般的类继承类似
 
 | function                          | desc                                                                                 | others |
+|-----------------------------------|--------------------------------------------------------------------------------------|--------|
 | (keymap-parent keymap)            | return the keymap's parent keymap, nil if no                                         |        |
 | (set-keymap-parent keymap parent) | set the keymap parent to parent, if nil, do nothing, recursive set the parent parent |        |
 
@@ -87,6 +89,7 @@ keymap可以继承其他keymap(单继承，多继承有其他实现方式),继�
 多继承用make-composed-keymap,
 
 | function                                     | desc                                                                     | others |
+|----------------------------------------------|--------------------------------------------------------------------------|--------|
 | (make-composed-keymap maps &optional parent) | return a new keymap, whose key is first find in (first maps then parent) |        |
 
 例如::
@@ -113,6 +116,7 @@ active keymaps
 **TODO**
 
 | function                | desc |
+|-------------------------|------|
 | current-global-map      |      |
 | current-local-map       |      |
 | current-monor-mode-maps |      |
@@ -137,6 +141,7 @@ command for binding keys
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 | function         | desc |
+|------------------|------|
 | global-set-key   |      |
 | global-unset-key |      |
 | local-set-key    |      |

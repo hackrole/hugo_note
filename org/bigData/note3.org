@@ -1,0 +1,342 @@
+* TODO large scala batch data processing
+mapreduce vs DAG
+MMP 并行数据库系统
+
+** TODO mapreduce 论文整理
+1) 求和模式: 数值求和，记录求和
+2) 过滤模式: 简单过滤, TopN
+3) 数据组织模式(data organization pattern): 数据分片,全局排序
+4) join模式: reduce-side join map-side join
+
+** TODO DAG计算模型
+microsoft Dryad
+
+FlumeJava / Tez
+
+* TODO stream processing
+连续查询处理类, 可扩展数据流平台类
+
+yahoo s4
+twitter storm
+
+1) 低延时
+2) 系统容错
+3) 扩展能力
+4) 易用性
+
+保证数据不丢失，保证数据送达, 计算状态持久化, 快速的计算迁移和故障恢复
+
+master-slave vs P2P
+
+DAG基本结构
+1) 流水线
+2) 乱序分组
+3) 定向分组
+4) 广播模式
+
+
+** delivery guarantees
+1) at-least once
+2) at-most once
+3) exact once
+
+
+** storem delivery guarantees
+送达保证机制 事务拓扑
+
+** state persistence
+
+1) standby service
+2) hot standby
+3) checkpointing
+
+** storm transaction topology
+
+** Millwheell Samza state persistence
+
+* interactive data analyze
+
+
+
+pig, hive, dremel, Drill, Impala, presto
+
+列式存储，热点数据放内存, 避免MR, join操作优化
+
+1) hive, hive on hadoop
+2) shark, shark on spark
+3) dremel, MPP, Impala, Presto, Drill
+4) mixed-system hadoopDB
+
+
+** hive
+1) add schema to hadoop
+2) provide sql-like interface, convert to MR in backend
+
+Table: HDFS directory
+Partition: HDFS sub directory in Table
+Bucket: HDFS file, partitioned by hash of column of table to multi files
+#+BEGIN_SRC sql
+-- create table with partition
+create table test_table (c1 string, c2 int)
+       partitioned by (ds string, hr int);
+-- partition key may not be in table
+-- insert
+insert overwrite table test_table partition (ds="2009-01-01", hr=12)
+       select * from t;
+-- add partition
+alter table test_table
+      add partition(ds="2009-02-02", hr=11);
+#+END_SRC
+
+provide SerDe interface to provide data serilizer of deserilizer, this make hive support multiple data format,
+for example: RCFile, ORCFile
+
+HiveQL, UDF(user-defined function), UDAF(user-defined aggregation function)
+
+main parts:
+
+1) meta-data manager(save in RDBMS)
+2) driver 驱动器
+3) query compile
+4) execute engine
+5) interactive UI
+
+执行步骤
+1) sql-analysis, use Antlr to produce AST(abstrat syntax tree)
+2) type-check and semantic-analysis, produce logic execute-plan.(AST -> QBT(quey block Tree) -> DAG(operator DAG))
+3) optimize execute-plan. using rule-based optimize program.
+
+主要优化策略
+1) column filter, only related-column be selected
+2) data filter by partition. get partition key in predicate(谓词)
+3) predicate pushdown
+4) map Join(broadcast join)
+5) join reorder
+
+physics plan execute
+#+BEGIN_SRC sql
+from (select a.status, b.school, b.gender
+     from status status_updates as a join profiles as b
+     on (a.userid = b.userid and a.ds = "2009-03-20")) subql
+
+insert overwrite table gender_summer
+       partition(ds="2009-03-20")
+select subql.gender, count(1)
+    group by subql.gender
+
+insert overwrite table school_summary
+       partition(ds="2009-03-20")
+select subql.school, count(1)
+       group by subql.school
+#+END_SRC
+
+制约hive效率的原因, 基于MR天然的批处理的设计
+1) mutiple data persistance to disk, and network pull(reduce)
+2) hadoop startup time-cost
+3) optimize base on static-rules, not dynamic-statistic
+
+*** TODO 参考文献: 11, 12
+
+*** stinger
+针对hive的阶段性优化方案
+HortonWorks Company
+
+1) TODO ORCFile(行列混合存储布局)引入
+2) 热点数据缓存
+3) Tez(yarn之上的DAG系统)
+4) 更丰富的SQL支持, 自动join优化选择
+5) Vector Query Engine(向量查询引擎)
+6) Cost-based Optimizer(基于成本的优化器)
+
+
+** Shark
+created by Berkeley Collage AMPLab, based on Spark
+Spark is good at iterable machine-learning problem.
+
+1) can put data in memory to get high performance
+2) add complex machine-learning Algorithm by define UDF(user-define function)
+
+Architecture is very like to Hive, replace MR with spark.
+and diff in Query-Optimizer, Physical-Plan, Execution cause the difference in spark and MR.
+1) limit pushdown to low-level data partition
+2) support broadcase-join
+
+what bring out the performance
+1) column data format based on memory
+2) partial DAG execution(PDE, 部分DAG执行引擎), like cost-based optimizer on SQL
+3) data Co-partition, to optimize join operation.
+
+PDE work theory
+1) work node give it statistics to the master node
+2) master compute the global staticstics, used it for the dynamic-optimizer(costed-base optimizer)
+
+MR common join pattern
+1) Shuffle Join(the Map stage splite data base Join-key to make data with same key live in same machine, really join happened at Reduce-stage)
+2) Map Join(while join big table with small table, broadcase the small table to work node, join at Map-stage. perfermance much better than Shuffle-Join)
+
+Data Co-Partition, used by MPP(并行数据库, Massively Parallel Processor)
+use hash to put data with same key to same machine to avoid Shuffle-Join,
+Shark support Data Co-Partition at language-level
+#+BEGIN_SRC sql
+-- use disturbute by to support Data Co-Partition
+create table 1_mem tblproperties ("shark.cache"=true)
+       as select * from lineitem distribute by L_ORDERKEY;
+
+create table o_mem tblproperties ("shark.cache"=true, "copartition"="1_mem")
+       as select * from order distribute by O_ORDERKEY;
+#+END_SRC
+
+** TODO Dremel data-warehouse
+dremel, powerDrill, Impala, Presto
+
+Dreamel was developed by google as backend for BigQuery
+
+PB-level data in thounds machine, use sql to analyze data in serveral-seconds
+1) reference Serving Tree(useding by google core search-engine)
+2) use MPP instead of MR
+3) use row-column mixed data sturcture.
+
+Serving Tree
+1) Root Server, get metadata of the query, pushdown to next-level, intermediate Server
+2) intermediate-server repeat the first step, until to Leaf-Server, to get the data.
+3) the pushup step, intermediate-server aggregation the data for lower-level server.
+
+use Slot with mutiple-threading to support data partition bigger than work-marchine number.
+
+use Query-dispatcher to handle long-tail worker problem. used in MR
+
+SQL operation
+selection, projection(投影), Aggregatino, Filter
+
+
+** PowerDrill
+develop at google.
+compare with Dremel
+1) use memory to query, with fast-speed, but only litte data-size
+2) most use-case is group-by, and optimize for this situation.
+
+main core-idea
+1) use column data format(more compactable, and perfermance in memory-usage)
+2) load most data to memory, use data-sturecture to add memory-usege rate
+3) partition data, add data-sturecture to skip more row
+
+data sturecture
+1) composite Range Partitioning(复合范围分片)
+2) Double-Dictionary Encoding(双字典编码)
+
+
+** Impala
+Cloudera, open-source, inspired by Google Dremel and MPP
+
+use Parquet(column data format)
+
+problem
+1) error tolerate not good(like most MPP database)
+2) not support UDF
+
+Impala subject
+1) maximize the parallel
+2) maximize data-local
+
+single node plan(hashjoin, scan, hashaggregation, Union, TopN, Exchange)
+Parallel stage(choose Shuffle-Join or map-join, local-aggregation and global aggregation, Top-N)
+
+** presto
+developed by facebook, open-source, to replace Hive
+
+add data-abstracted layer, so this support mutiple data source
+
+1) load data in memory
+2) use RPC like MPP
+
+
+** mixed data-warehouse
+hadoopDB
+sql to MapReduce to SQL
+only support Selection, Filter, aggregation
+
+** TODO 论文阅读
+1) MPP
+2) google Dremel, inteactive analysis of web-scale datasets(ACM)
+3) Impala源码分析
+4) what does "100 times faster than hive" actually mean
+5) presto(interacting with petabytes of data at Facebook)
+6) hadoopdb (an architectural hybrid of mapreduce and DBMS technologies for analytical workloads)
+
+
+* TODO graph database: architecture and algorithm
+邻接表(更常用)，邻接矩阵
+
+graph data character
+1) bad data locality
+2) pwoer Lay规则, 极度不均匀
+
+Entry, Edge, Property
+
+OLAP/OLTP
+
+** OLTP
+twitter FlockDB (mysql, Gizzard Gizzmo)
+facebook TAO
+
+ 分布式存储引擎，图数据库管理层， 图操作API层
+
+*** TAO
+跨数据中心的准实时图数据库, 最终一致
+
+底层使用myql
+两层缓存（主cache, 从cache)
+
+** common graph dig probelm
+pageRank
+单源最短路径 single source shortest path
+二部图最大匹配
+
+*** pageRank
+假设
+1) A的in-site越多，A越最重要
+2) A的in-site权重不同，越重要的site权重越高
+
+链接陷阱
+
+** OLAP
+Pregel, Giraph, Hama, Powergraph, GraphLab, GraphChi
+
+合理切片数据很重哟
+衡量标准: 机器负载均衡和网络通信总量
+
+*** 切边发Edge-cut
+good at 机器负载均衡，bad at 网络通信量
+
+结点随机分布法(Pregel, GraphLab)
+
+*** 切点法(vertex-cut)
+ 边随机分布法
+
+*** 计算模型
+1) 图编程模型
+2) 图计算模型
+
+Vertex-Centered programming Model
+#+BEGIN_SRC python
+# preusdo code
+Function (vertex) begin
+  x[] <- read values of in- and out-edge of vertex;
+  vertex.value <- f(x[]);
+  foreach edge of vertex do
+    edge.value <- g(vertex.value, edge.value);
+  end
+end
+#+END_SRC
+GAS
+
+GAS编程模型
+节点更新函数stage
+1) Gather(收集)
+2) Apply
+3) Scatter(分发)
+
+同步执行模型: BSP模型, MapReduce模型
+
+异步执行模型
+一致性: 完全一致性, 边一致性，节点一致性

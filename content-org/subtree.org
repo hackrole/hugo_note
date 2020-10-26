@@ -1,0 +1,40 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: ./
+
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* emacs                                                              :@emacs:
+  all posts in here will have category set to /emacs/
+
+** TODO writing hugo blog in org
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: writing-hugo-blog-in-org-subtree-export
+   :EXPORT_DATE: 2020-10-29
+   :EXPORT_HUGO_MENU: :menu "main"
+   :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :foo bar :baz zoo :alpha 1 :beta "two words" :gamma 10
+
+*** first heading within the post
+    - this post will be exported as
+      =content/posts/writing-hugo-blog-in-org-file-export.md=
+    - its title will be "writing Hugo blog in org
+    - it will have /hugo/ and /org/ tags and /emacs/ as category
+    - the /lastmod/ property in the front-matter is set automatically to the time of export.
+    - the menuitem /identifier/ is auto-set
+    - the menu item /weight/ and post /weight/ if needed have to be manully specified as show abve.
+
+**** a sub-heading under the heading
+    - it's draft state will be marked as =true= because of =#+HUGO_DRAFT: true=.
+
+    with the point_anywhere_, do =C-c C-e H h= to export the whole file titled /Writing Hugo blog in org/to a hugo post.
+  
+    the exported Markdown has a litter comment footer as set in the /local variables/ section below
+  
+    it autosave now.
+    the title still not correct
+    
+* footnotes
+
+* COMMENT Local Variables                                           :ARCHIVE:...
+
+
