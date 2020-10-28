@@ -14,6 +14,7 @@ tags: ["ELK", "elasticsearch"]
 
 the core component used to store data.
 
+
 ## logstash or fluentd
 
 log forwarder and aggregation

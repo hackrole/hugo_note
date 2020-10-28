@@ -1,12 +1,16 @@
 +++
-title = "writing Hugo Org"
+title = "hugo org subtree"
 author = ["hackrole"]
-date = 2020-10-27
-lastmod = 2020-10-28T00:22:05+08:00
-tags = ["hugo", "org"]
+date = 2020-10-29
+lastmod = 2020-10-28T00:08:08+08:00
 categories = ["emacs"]
-draft = false
+draft = true
 weight = 2001
+foo = "bar"
+baz = "zoo"
+alpha = 1
+beta = "two words"
+gamma = 10
 +++
 
 ## first heading within the post {#first-heading-within-the-post}
@@ -31,5 +35,11 @@ the exported Markdown has a litter comment footer as set in the _local variables
 it autosave now.
 the title still not correct
 
+try to update something.
 
-## footnotes {#footnotes}
+```python
+import itertools
+
+for i in itertools.repeat("Hello world", 3):
+    print(i)
+```

@@ -4,15 +4,13 @@
 #+HUGO_WEIGHT: 2001
 #+HUGO_AUTO_SET_LASTMOD: t
 
-#+TITLE: writing Hugo blogin Org
-#+title: writing hugo blog in org
+#+TITLE: writing Hugo Org
 
 #+DATE: 2020-10-27
 #+HUGO_TAGS: hugo org
 #+HUGO_CATEGORIES: emacs
-#+HUGO_MENU: :menu "main" :weight 2001
 
-#+HUGO_DRAFT: true
+#+HUGO_DRAFT: false
 
 * first heading within the post
 - this post will be exported as

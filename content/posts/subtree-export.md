@@ -1,9 +1,8 @@
 +++
-title = "writing Hugo Org"
+title = "writing hugo subtree"
 author = ["hackrole"]
-date = 2020-10-27
-lastmod = 2020-10-28T00:22:05+08:00
-tags = ["hugo", "org"]
+date = 2020-10-28T00:20:00+08:00
+lastmod = 2020-10-28T01:11:02+08:00
 categories = ["emacs"]
 draft = false
 weight = 2001
@@ -31,5 +30,46 @@ the exported Markdown has a litter comment footer as set in the _local variables
 it autosave now.
 the title still not correct
 
+try to update something.
 
-## footnotes {#footnotes}
+```ipython
+import itertools
+
+for i in itertools.repeat("Hello world", 3):
+    print(i)
+a= "hello world"
+a
+```
+
+```ipython
+# Out[39]:
+|    | 0   |
+|----|-----|
+|  0 | h   |
+|  1 | e   |
+|  2 | l   |
+|  3 | l   |
+|  4 | o   |
+|  5 |     |
+|  6 | w   |
+|  7 | o   |
+|  8 | r   |
+|  9 | l   |
+| 10 | d   |
+```
+
+```ipython
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+```
+
+```python
+print("hell world")
+print("nice to meet")
+```
+
+:results:
+nil:END:

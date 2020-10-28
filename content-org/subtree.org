@@ -1,5 +1,5 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: ./
+#+HUGO_SECTION: posts
 
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
@@ -7,12 +7,12 @@
 * emacs                                                              :@emacs:
   all posts in here will have category set to /emacs/
 
-** TODO writing hugo blog in org
+** DONE writing hugo subtree
+   CLOSED: [2020-10-28 三 00:20]
    :PROPERTIES:
-   :EXPORT_FILE_NAME: writing-hugo-blog-in-org-subtree-export
+   :EXPORT_FILE_NAME: subtree-export
    :EXPORT_DATE: 2020-10-29
-   :EXPORT_HUGO_MENU: :menu "main"
-   :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :foo bar :baz zoo :alpha 1 :beta "two words" :gamma 10
+   :END:
 
 *** first heading within the post
     - this post will be exported as
@@ -32,6 +32,61 @@
   
     it autosave now.
     the title still not correct
+    
+    try to update something.
+    
+    #+begin_src ipython :exports both :results result code
+      import itertools
+
+      for i in itertools.repeat("Hello world", 3):
+          print(i)
+      a= "hello world"
+      a
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    # Out[34]:
+    |    | 0   |
+    |----+-----|
+    |  0 | h   |
+    |  1 | e   |
+    |  2 | l   |
+    |  3 | l   |
+    |  4 | o   |
+    |  5 |     |
+    |  6 | w   |
+    |  7 | o   |
+    |  8 | r   |
+    |  9 | l   |
+    | 10 | d   |
+    #+end_example
+
+
+
+    
+    #+begin_src ipython :session :exports both :results raw :type scalar
+      %matplotlib inline
+      import matplotlib.pyplot as plt
+      import numpy as np
+      import pandas as pd
+      import seaborn as sns
+
+    #+end_src
+
+      #+RESULTS:
+      
+#+begin_src python :session :exports both :results raw drawer
+  print("hell world")
+  print("nice to meet")
+#+end_src
+
+#+RESULTS:
+:results:
+:end:
+
+      
+
     
 * footnotes
 
