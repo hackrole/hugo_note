@@ -1,5 +1,5 @@
-baseURL = "https://example.com"
-title = "Eureka Demo"
+baseURL = "https://hackrole.github.io"
+title = "Hackrole's Blog"
 
 # Comment when installing using Hugo Modules
 theme = "eureka"

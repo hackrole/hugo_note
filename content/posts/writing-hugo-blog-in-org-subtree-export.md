@@ -11,9 +11,6 @@ baz = "zoo"
 alpha = 1
 beta = "two words"
 gamma = 10
-[menu.main]
-  weight = 2001
-  identifier = "writing-hugo-blog-in-org-subtree"
 +++
 
 ## first heading within the post {#first-heading-within-the-post}

@@ -12,3 +12,13 @@
   name = "Docs"
   url = "/docs/"
   weight = 30
+
+[[main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 40
+
+[[main]]
+  name = "Categories"
+  url = "/categories"
+  weight = 50

@@ -16,6 +16,7 @@ jobs:
           submodules: true
       - name: Publish Site
         uses: chabad360/hugo-gh-pages@master
-        repo: hackrole/hackrole.github.io
         with:
-          githubToken: ${{ secrets.PERSONAL_TOKEN }}
+          repo: hackrole/hackrole.github.io
+          branch: master
+          githubToken: ${{ secrets.MY_PERSONAL_TOKEN }}

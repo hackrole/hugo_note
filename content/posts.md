@@ -7,9 +7,6 @@ tags = ["hugo", "org"]
 categories = ["emacs"]
 draft = true
 weight = 2001
-[menu.main]
-  identifier = "writing-hugo-blogin-org-writing-hugo-blog-in-org"
-  weight = 2001
 +++
 
 ## first heading within the post {#first-heading-within-the-post}
