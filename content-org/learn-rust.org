@@ -434,4 +434,182 @@
     #+end_src
 
     
-** 无畏并发
+** 无畏并发 fearless concurrency
+   concurrent-programming: programs can run in independent with each other.
+   parallel programming: program can run at same time.
+
+   as a low-level language, rust need less abstraction and more control.
+
+   
+*** use thread
+    process vs thread
+    
+    programs:
+    
+    1) Race conditions: data-race. resource-race.
+    2) DeakLock
+    3) difficult concurrent bug.
+
+    os-thread vs green-thread: 1:1 vs M:N
+    
+    #+begin_src rust
+      /// thread examples
+
+      /// when the main-thread exit, the fork-thread will exit too.
+      /// just like python thread.deamon flag.
+
+      use std::thread;
+      use std::time::Duration;
+
+      fn main() {
+          thread::spawn(|| {
+              for i in 1..10 {
+                  println!("hi number {} from the spawned thread!", i);
+                  thread::sleep(Duration::from_millis(1));
+              }
+          });
+
+          for i in 1..5 {
+              println!("hi number {} from the main thread!", i);
+              thread::sleep(Duration::from_millis(1));
+          }
+      }
+    #+end_src
+
+    #+begin_src rust
+      /// use join to wait sub-thread finish
+      use std::thread;
+      use std::time::Duration;
+
+      fn main() {
+          let handle = thread::spawn(|| {
+              for i in 1..10 {
+                  println!("hi number {} from the spawned thread!", i);
+                  thread::sleep(Duration::from_millis(1));
+              };
+          });
+
+          for i in 1..5 {
+              println!("hi number {} from the main thread!", i);
+              thread::sleep(Duration::from_millis(1));
+          }
+
+          handle.join().unwrap();
+      }
+    #+end_src
+
+    thread vs move-closure
+    #+begin_src rust
+      use std::thread;
+
+      fn main() {
+          let v = vec![1, 2, 3];
+
+          /// this would raise, cause the `v` was a borrow-ref.
+          /// it may be dropped before sub-thread. rust avoid you to do this.
+          // let handle = thread::spawn(|| {
+          //     println!("Here's a vector: {:?}", v);
+          // });
+
+          /// add `move` to move owner to sub-thread.
+          let handle = thread::spawn(move || {
+              println!("Here's a vector: {:?}", v);
+          });
+
+          /// the would made `v` not exists in sub-thread.
+          /// if variables has been moved into sub-thread, this would raise too.
+          // drop(v)
+
+
+          handle.join().unwrap();
+      }
+    #+end_src
+
+    
+*** pass msg between threads
+
+    #+begin_src rust
+      use std::thread;
+      use std::sync::mpsc;
+
+      fn main() {
+          let (tx, rx) = mpsc::channel();
+
+          thread::spawn(move || {
+              let val = String::from("HI");
+              tx.send(val).unwrap();
+          });
+
+          let received = rx.recv().unwrap();
+          println!("Got: {}", received);
+      }
+    #+end_src
+    
+    #+begin_src rust
+      use std::thread;
+      use std::sync::mpsc;
+      use std::time::Duratin;
+
+      fn single_send() {
+          let (tx, rx) = mpsc::channel();
+
+          thread::spawn(move || {
+              let vals = vec![
+                  String::from("Hi"),
+                  String::from("from"),
+                  String::from("the"),
+                  String::from("thread"),
+               ];
+
+              for val in vals {
+                  tx.send(val).unwrap();
+                  thread::sleep(Duratin::from_secs(1));
+              }
+          });
+
+          for received in rx {
+              println!("Got: {}", received);
+          }
+      }
+
+      fn multi_send() {
+          let (tx, rx) = mpsc::channel();
+
+          // use clone to got multi sender
+          let tx1 = mpsc::Sender::clone(&tx);
+          thread::spawn(move || {
+              let vals = vec![
+                  String::from("hi"),
+                  String::from("from"),
+                  String::from("the"),
+                  String::from("thread"),
+              ];
+
+              for val in vals {
+                  tx1.send(val).unwrap();
+                  thread::sleep(Duration::from_secs(1));
+              }
+          });
+
+          thread::spawn(move || {
+              let vals = vec![
+                  String::from("move"),
+                  String::from("messages"),
+                  String::from("for"),
+                  String::from("you"),
+              ];
+              for val in vals {
+                  tx.send(val).unwrap();
+                  thread::sleep(Duration::from_secs(1));
+              }
+          });
+
+          for received in rx {
+              println!("Got: {}", received);
+          }
+      }
+    #+end_src
+
+    
+*** share-memory concurrent
+    
