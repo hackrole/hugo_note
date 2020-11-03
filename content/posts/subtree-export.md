@@ -2,7 +2,7 @@
 title = "writing hugo subtree"
 author = ["hackrole"]
 date = 2020-10-28T00:20:00+08:00
-lastmod = 2020-10-28T01:11:02+08:00
+lastmod = 2020-10-28T00:52:00+08:00
 categories = ["emacs"]
 draft = false
 weight = 2001
@@ -32,30 +32,16 @@ the title still not correct
 
 try to update something.
 
-```ipython
+```python
 import itertools
 
 for i in itertools.repeat("Hello world", 3):
     print(i)
-a= "hello world"
-a
+"hello world"
 ```
 
-```ipython
-# Out[39]:
-|    | 0   |
-|----|-----|
-|  0 | h   |
-|  1 | e   |
-|  2 | l   |
-|  3 | l   |
-|  4 | o   |
-|  5 |     |
-|  6 | w   |
-|  7 | o   |
-|  8 | r   |
-|  9 | l   |
-| 10 | d   |
+```text
+None
 ```
 
 ```ipython
