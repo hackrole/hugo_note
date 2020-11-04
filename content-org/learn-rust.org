@@ -5,7 +5,7 @@
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 
-* learn rust notebook                                                  :Rust:
+* learn rust notebook                                                  :@Rust:
 
 ** TODO 14章命名空间
 :PROPERTIES:
@@ -131,8 +131,7 @@ String和Vec<T>也是智能指针，有元数据(容量等)和额外的功能(�
   }
 #+end_src
 
-
-** 无畏并发 fearless concurrency
+** 16 无畏并发 fearless concurrency
    :PROPERTIES:
    :EXPORT_FILE_NAME: learn-rust-note-16-concurrency
    :EXPORT_DATE: 2020-11-04
@@ -404,7 +403,6 @@ String和Vec<T>也是智能指针，有元数据(容量等)和额外的功能(�
     6)  for Type T, if &T is Send-Trait, T is Sync-Trait.
     7)  Type make of Sync-Type auto become Sync-Type.
 
-       
 ** 17 rust OOP
    :PROPERTIES:
    :EXPORT_FILE_NAME: learn-rust-17-rust-oop
