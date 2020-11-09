@@ -1,7 +1,7 @@
 #+STARTUP: content
 
 #+hugo_base_dir: ../
-#+hugo_section: posts
+#+hugo_section: post
 #+hugo_weight: auto
 #+hugo_auto_set_lastmod: t
 
@@ -900,3 +900,331 @@ String和Vec<T>也是智能指针，有元数据(容量等)和额外的功能(�
 
      
 *** advance-trait
+    
+    ~associated types~
+
+    #+begin_src rust
+      pub trait Iterator {
+          /// 占位类型
+          type Item;
+
+          fn next(&mut self) -> Option<Self::Item>;
+      }
+
+
+      impl Interator for Counter {
+          /// unlike generic, this can only choose once.
+          type Item = u32;
+
+          fn next(&mut self) -> Option<Self::Item> {
+              // -snip-
+          }
+      }
+
+      /// generic can implement multi-times,
+      /// and need add generic-param
+      pub trait Iterator<T> {
+          fn next(&mut self) -> Option<T>;
+      }
+
+      impl Iterator<String> for Counter {
+          fn next<String>(&mut self) -> Option<String> {
+              // -snip-
+          }
+      }
+
+      impl Iterator<u32> for Counter {
+          fn next<u32>(&mut self) -> Option<u32> {
+              // -snip-
+          }
+      }
+    #+end_src
+
+    add default-type for Generic, A good example is Operator-overloading(运算符重载)
+    rust not allow create-op or overload-op, but can implement op list in  ~std::ops~.
+    
+    #+begin_src rust
+      use std::ops::Add;
+
+      #[derive(Debug, PartialEq)]
+      struct Point {
+          x: i32,
+          y: i32,
+      }
+
+      impl Add for Point {
+          type Output = Point;
+
+          fn add(self, other: Point) -> Point {
+              Point {
+                  x: self.x + other.x,
+                  y: self.y + other.y,
+              }
+          }
+      }
+
+      /// Add Trait
+      // RHS is default-type-paramters, 默认类型参数
+      trait Add<RHS=Self> {
+          type Output;
+
+          fn add(self, rhs: RHS) -> Self::Output;
+      }
+
+
+      /// default-type-paramters can
+      /// 1) extends type and not broke existing-code
+      /// 2) customer in most-people not-need situation
+      struct Millimeters(u32);
+      struct Meters(u32);
+
+      impl Add(Meters> for Millimeters {
+          type Output = Millimeters;
+
+          fn add(self, other: Meters) -> Millimeters {
+              Millimeters(self.0 + (other.0 * 1000))
+          }
+      }
+    #+end_src
+
+    完全限定语法与消除歧义: 调用相同名称的方法
+    rust neither can avoid traits has same method-name, nor can avoid implement the two traits for same type.
+    
+    #+begin_src rust
+      trait Pilot {
+          fn fly(&self);
+      }
+
+      trait Wizard {
+          fn fly(&self);
+      }
+
+      struct Human;
+
+      impl Pilot for Human {
+          fn fly(&self){
+              println!("This is your captain speaking.");
+          }
+      }
+
+      impl Wizard for Human {
+          fn fly(&self) {
+              println!("Up!");
+          }
+      }
+
+      impl Human {
+          fn fly(&self) {
+              println!("*waving arms furiously*");
+          }
+      }
+
+
+      fn main() {
+          let person = Human;
+          /// this call method implement for type.
+          person.fly();
+          /// call method from certain trait
+          Pilot::fly(&person);
+          Wizard::fly(&person);
+      }
+    #+end_src
+    
+    #+begin_src rust
+      /// static-method or assoicate-method have no self-paramters.
+      /// so cannot use above method to call Trait-method.
+      /// you need to use *完全限定语法*
+      trait Animal {
+          fn baby_name() -> String;
+      }
+
+      struct Dog;
+
+
+      impl Dog {
+          fn baby_name() -> String {
+              String::from("Spot")
+          }
+      }
+
+      impl Animal for Dog {
+          fn baby_name() -> String {
+              String::from("puppy")
+          }
+      }
+
+      fn main() {
+          println!("A baby dog is called a {}", Dog::baby_name());
+          // *完全限定语法* syntax <Type as Trait>::function(receiver_if_method, next_arg, ...);
+          println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
+      }
+    #+end_src
+
+   use other-trait functions in current trait. the depends-on trait also need tobe implemented.
+   the depends-on trait is supertrait of current-trait.
+
+   #+begin_src rust
+     use std::fmt;
+
+     trait OutlinePrint: fmt::Display {
+         fn outline_print(&self) {
+             let output = self.to_string();
+             let len = output.len();
+             println!("{}", "*".repeat(len + 4));
+             println!("*{}*", " ".repeat(len + 2));
+             println!("* {} *", output);
+             println!("*{}*", " ".repeat(len + 2));
+             println!("{}", "*".repeat(len + 4));
+         }
+     }
+
+
+     struct Point {
+         x: i32,
+         y: i32,
+     }
+
+     impl fnt::Display for Point {
+         fn fmt(&self, &mut fmt::Formatter) -> fmt::Result {
+             write!(f, "({}, {})", self.x, self.y)
+         }
+     }
+
+     /// this world raise if not implement Debug-Trait
+     impl OutlinePrint for Point {}
+   #+end_src
+
+   newtype 模式用以在外部类型上实现外部trait, newtype was concept come from haskell. no speed punish in runtime.
+   you may need implement every-method in inner-type or implement-Deref trait.
+   #+begin_src rust
+     use std::fmt;
+
+     struct Wrapper(Vec<String>);
+
+     impl fmt::Display for Wrapper {
+         fn fmt(&selff, f: &mut fmt::Formatter) -> fmt::Result {
+             write!(f, "[{}]", self.0.join(", "))
+         }
+     }
+
+     fn main() {
+         let w = Wrapper(vec![String::from("hello"), String::from("world")]);
+         println!("w = {}", w);
+     }
+   #+end_src
+
+** advance-type
+
+   1) type-alias
+   2) !-type
+   3) dynamic-size type
+
+*** use new-type pattern for type-safe and abstraction.
+
+    #+begin_src rust
+      /// type-alias was still origin-type.
+
+      type Kilometers = i32;
+
+      let x: i32 = 5;
+      let y: Kilometers = 5;
+
+      /// if use new-type, cannot add
+      println!("x + y  {}", x + y);
+
+
+      /// type-alias was most used for less-code
+      let f: Box<dyn Fn() + Send + 'static> = Box::new(|| println!("hi"));
+
+      fn takes_long_type(f: Box<dyn Fn() + Send + 'static>) {
+          // --snip--
+      }
+
+      fn return_long_type() -> Box<dyn Fn() + Send + 'static>{
+          // --snip--
+      }
+
+      // use alias to reduce code
+      type Thunk = Box<dyn Fn() + Send + 'static>;
+
+      let f: Thunk = Box::new(|| println!("hi"));
+
+      fn takes_long_type(f: Thunk) {
+          // -snip-
+      }
+
+      fn returns_long_type() -> Thunk {
+          // -snip-
+      }
+
+      /// type-alias usually used with Result<T, E>
+      use std::io::Error;
+      use std::fmt;
+
+      pub trait Write {
+          fn write(&mut self, buf: &[u8]) -> Result<usize, Error>;
+          fn flush(&mut self) -> Result<(), Error>;
+
+          fn write_all(&mut self, buf: &[u8]) -> Result<(), Error>;
+          fn write_fmt(&mut self, fmt: fmt::Arguments) -> Result<(), Error>;
+      }
+
+      // use type-alias with generic
+      type Result<T> = std::result::Result<T, std::io::Error>;
+      pub strait Write {
+          fn write(&mut self, buf: &[u8]) -> Result<usize>;
+          fn flush(&mut self) -> Result<()>;
+
+          fn write_all(&mut self, buf: &[u8]) -> Result<()>;
+          fn write_fmt(&mut self, fmt: Arguments) -> Result<()>;
+      }
+    #+end_src
+
+    
+*** 从不返回的never-type
+    diverging-functions 发散函数
+    never-type have no value, can transfer to any-type.
+    never-type can use to panic.
+    
+    #+begin_src rust
+      /// continue return !
+      let guess = match guess.trim().parse() {
+          Ok(_) => 5,
+          Err(_) => continue,
+          /// the below will raise
+          // Err(_) => "hello",
+      };
+
+      /// ! used in panic
+      impl<T> Option<T> {
+          pub fn unwrap(self) -> T {
+              match self {
+                  Some(val) => val,
+                  /// panic return ! value.
+                  None => panic!("called optins::unwrap() on a None value"),
+              }
+          }
+      }
+    #+end_src
+    
+*** TODO dynamic-size type and Sized-trait
+    
+    dynamic-size type must put value in heap and use point.
+    
+    Size-Trait auto-implement for type
+    
+    #+begin_src rust
+      fn generic<T>(t: T) {
+      }
+
+      fn generic<T: Sized>(t: T) {
+      }
+
+      // T maybe or maybe not Size-Trait
+      fn generic<T: ?Sized>(t: &T) {
+      }
+
+    #+end_src
+
+    
+** function and closure.
