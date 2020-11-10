@@ -7,6 +7,34 @@
 
 * learn rust notebook                                                  :@Rust:
 
+  
+** 4 rust ownership-rule
+   借用,slice,rust内存布局
+   
+*** stack and heap
+    stack: last in, first out. data in stack must have sized-length
+    heap: memory need allocating, much slower
+
+*** ownership rule
+    1) every variable has an owner.
+    2) variable have only own owner.
+    3) while owner leave its scope, the variable was dropped.
+*** scope 作用域
+*** String类型
+    字符串字面量在编译时确定，immutable.
+    
+    String 分配在heap上, 能存储未知大小的额文本,可以修改String
+    #+begin_src rust
+      let mut s = String::from("hello");
+
+      s.push_str(", world");
+
+      println!("{}", s);
+    #+end_src
+
+    #+RESULTS:
+    : hello, world
+    
 ** TODO 14章命名空间
 :PROPERTIES:
 :EXPORT_FILE_NAME: learn-rust-note-14
