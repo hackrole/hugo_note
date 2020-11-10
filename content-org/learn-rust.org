@@ -1228,3 +1228,203 @@ String和Vec<T>也是智能指针，有元数据(容量等)和额外的功能(�
 
     
 ** function and closure.
+   
+    function point
+   
+    #+begin_src rust
+      fn add_one(x: i32) -> i32 {
+          x + 1
+      }
+
+      fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
+          f(arg) + f(arg)
+      }
+
+      fn main() {
+          let answer = do_twice(add_one, 5);
+
+          println!("the answer is: {}", answer);
+      }
+    #+end_src
+
+    function point implement all three closure-trait: Fn, FnMut, FnOnce
+   
+    #+begin_src rust
+      let list_of_numbers = vec![1, 2, 3];
+
+      let list_of_strings: Vec<String> = list_of_numbers
+          .iter()
+          .map(|i| i.to_string())
+          .collect();
+
+      let list_of_strings: Vec<String> = list_of_numbers
+          .iter()
+          .map(ToString::to_string)
+          .collect();
+    #+end_src
+   
+    #+begin_src rust
+      enum Status {
+          Value(u32),
+          Stop,
+      }
+
+      let list_of_statuses: Vec<Status> =
+          (0u32..20)
+          .map(Status::value)
+          .collect();
+    #+end_src
+
+    #+begin_src rust
+      /// can return closure directly,
+      /// causre Sized-trait cannot known Fn size
+      /// below raise.
+      // fn return_closure() -> Fn(i32) -> i32 {
+    
+      // }
+
+      /// use Box to wrap it.
+      fn returns_closure() -> Box<dyn Fn(i32) -> i32> {
+          Box::new(|x| x + 1)
+      }
+    #+end_src
+  
+*** TODO question
+    1) function-point vs closure
+
+** macro 宏
+   
+   1) 声明宏, declarative macro: macro_rules!
+   2) 三种过程宏, procedural macro.
+
+  自定义#[derive]宏 在结构体，枚举上指定derive属性添加
+  类属性Attribute-like宏可用于任意项的自定义属性
+  类函数宏类似函数，不过作用与作为参数传递的token.
+
+  宏是一种为写替他代码而写代码的方式，即元编程, metaprogramming.
+
+  macro vs function
+   1) function must declare paramter count and type, macro can aceept different paramters(like js?)
+   2) macro is code to generate-code, usually more difficult to understand and write.
+   3) macro must be import before call it.
+
+*** 声明宏 declarative-macro, macro_rules!
+
+    #+begin_src rust
+      /// implement simple vec! macro
+      #[macro_export]
+      macro_rules! vec {
+          ($( $x:expr), *) => {
+              {
+                  let mut temp_vec = vec::new();
+                  $(
+                      temp_vec.push($x);
+                  )*
+                  temp_vec
+              }
+          }
+      }
+    #+end_src
+    
+*** procedural macros
+    自定义派生(derive), 类属性, 类函数
+    
+    过程宏接受一个TokenStream输入，产生一个TokenStream输出
+    
+    *Rust has no Reflect反射???*
+
+    #+begin_src rust
+      use proc_macro;
+
+      #[some_attribute]
+      pub fn some_name(input: TokenStream) -> TokenStream {
+    
+      }
+    #+end_src
+
+    
+**** 自定义derive宏
+     #+begin_src rust
+       /// src/main.rs
+
+       use hello_macro::HelloMacro;
+       use hello_macro_derive::HelloMacro;
+
+       #[derive(HelloMacro)]
+       struct Pancakes;
+
+       fn main() {
+           Pancakes::hello_macro();
+       }
+
+       /// ~cargo new hello_macro --lib
+       pub trait HelloMacro {
+           fn helo_macro();
+       }
+
+       /// the Macro implement
+       /// cargo new hello_macro_derive --lib
+       /// hello_macro_derive/Cargo.toml
+       // [lib]
+       // proc-macro = true
+
+       // [dependencies]
+       // syn = "0.14.4"
+       // quote = "0.6.3"
+
+       /// hello_macro_derive/src/lib.rs
+       extern crate proc_macro;
+
+       use crate::proc_macro::TokenStream;
+       use quote::quote;
+       use syn;
+
+       #[proc_macro_derive(HelloMacro)]
+       pub fn hello_macro_derive(input: TokenStream) -> TokenStream {
+           let ast = syn::parse(input).unwrap();
+
+           impl_hello_macro(&ast);
+       }
+
+       fn impl_hello_macro(ast: &syn::DeriveInput) -> TokenStream {
+           let name = &ast.ident;
+           let gen = quote! {
+               impl HelloMacro for #name {
+                   fn hello_macro() {
+                       println!("Hello, Macro! My name is {} ", stringify!(#name));;
+                   }
+               }
+           }
+           gen.into()
+       }
+     #+end_src
+     
+**** 类属性宏
+     
+     #+begin_src rust
+       #[route(GET, "/")]
+       fn index() {
+       }
+
+       /// 工作方式同自定义宏，输入TokenStream, 输出TokenStream
+       #[proc_macro_attribute]
+       pub fn route(attr: TokenStream, item: TokenStream) -> TokenStream
+     #+end_src
+
+**** 类函数宏
+     类似函数，比函数更灵活，可以接收未知数量的参数
+     
+     #+begin_src rust
+       let sql = sql!(SELECT * FROM posts WHERE id=1);
+
+       #[proc_macro]
+       pub fn sql(input: TokenStream) -> TokenStream {
+       }
+     #+end_src
+     
+** 20 build multiple-threading webserver
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: learn-rust-20-threading-webserver
+   :EXPORT_DATE: 2020-11-09
+   :END:
+   
