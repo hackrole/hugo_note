@@ -2,9 +2,9 @@
 title = "16 无畏并发 fearless concurrency"
 author = ["hackrole"]
 date = 2020-11-04
-lastmod = 2020-11-05T00:20:43+08:00
+lastmod = 2020-11-12T00:57:59+08:00
 series = ["rust"]
-tags = ["Rust"]
+categories = ["Rust"]
 draft = false
 weight = 2003
 +++

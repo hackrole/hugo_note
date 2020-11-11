@@ -1,9 +1,8 @@
 ---
 title: django tools
 date: 2017-03-29
-weight: 5
 author: hackrole
-email: hack.role@gmail.com
+email: hackrole.me@gmail.com
 tags: ['python', 'django']
 draft: false
 ---

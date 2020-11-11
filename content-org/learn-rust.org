@@ -1,5 +1,7 @@
 #+STARTUP: content
 
+#+hugo_series: rust
+#+hugo_custom_front_matter: series: ["rust"]
 #+hugo_base_dir: ../
 #+hugo_section: post
 #+hugo_weight: auto

@@ -5,7 +5,6 @@ date = 2020-11-08
 lastmod = 2020-11-10T15:55:41+08:00
 categories = ["Rust"]
 draft = false
-weight = 2005
 +++
 
 包括的内容:
