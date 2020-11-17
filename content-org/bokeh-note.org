@@ -10,6 +10,10 @@
 * learn-bokeh                                                        :@bokeh:
   
 ** quick-start
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: learn-bokeh-get-started
+   :EXPORT_DATE: 2020-11-17
+   :END:
    bokeh can provide *interactive visualization* for *modern web browsers*.
    *elegant*, *concise*, *vesatile graphics*,
    *afford high-performacne interactiivity onver lagerge or streaming datasets.
