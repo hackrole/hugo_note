@@ -2,7 +2,7 @@
 title = "quick-start"
 author = ["hackrole"]
 date = 2020-11-17
-lastmod = 2020-11-18T00:44:15+08:00
+lastmod = 2020-11-18T00:45:51+08:00
 series = ["bokeh"]
 categories = ["bokeh"]
 draft = false
@@ -64,7 +64,7 @@ y = [6, 7, 2, 4, 5]
 # output to static html file
 # ??? how to use in web-server like flask.
 # output_file("lines.html")
-output_notebook()
+# output_notebook()
 
 # create a new plot with a litter and axis labels
 p = figure(title="simple line example", x_axis_label="x", y_axis_label="y")

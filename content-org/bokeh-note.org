@@ -26,7 +26,7 @@
 
    
 *** installation
-    #+begin_src shell
+    #+begin_src shell :exports code
       # recommend way
       # conda install deps, and exmaples in *examples/* subdirectory
       conda install bokeh
@@ -50,9 +50,8 @@
     4) add renderers, to add renderers to figure, such as src_python{fig.line()}
     5) call ~show()~ or ~save()~ to output results
 
-
     #+name: first exmaple to get-started
-    #+begin_src ipython :session :exports both :results raw drawer
+    #+begin_src ipython :session :exports code :results raw drawer
       from bokeh.plotting import figure, output_file, show, output_notebook
 
       # prepare some data
@@ -62,7 +61,7 @@
       # output to static html file
       # ??? how to use in web-server like flask.
       # output_file("lines.html")
-      output_notebook()
+      # output_notebook()
 
       # create a new plot with a litter and axis labels
       p = figure(title="simple line example", x_axis_label="x", y_axis_label="y")
