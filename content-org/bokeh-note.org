@@ -1,7 +1,6 @@
 #+STARTUP: content
 
 #+HUGO_SERIES: bokeh
-#+HUGO_CUSTOM_FRONT_MATTER: series: ["bohe"]
 #+hugo_base_dir: ../
 #+hugo_section: post
 #+hugo_weight:auto

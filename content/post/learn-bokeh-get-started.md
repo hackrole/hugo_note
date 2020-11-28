@@ -2,12 +2,11 @@
 title = "quick-start"
 author = ["hackrole"]
 date = 2020-11-17
-lastmod = 2020-11-18T00:45:51+08:00
+lastmod = 2020-11-28T10:51:28+08:00
 series = ["bokeh"]
 categories = ["bokeh"]
 draft = false
 weight = 2001
-series: = ""
 +++
 
 bokeh can provide **interactive visualization** for **modern web browsers**.
