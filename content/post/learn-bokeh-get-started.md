@@ -2,7 +2,7 @@
 title = "quick-start"
 author = ["hackrole"]
 date = 2020-11-17
-lastmod = 2020-11-28T10:51:28+08:00
+lastmod = 2020-11-28T10:56:32+08:00
 series = ["bokeh"]
 categories = ["bokeh"]
 draft = false
@@ -47,7 +47,7 @@ the general steps of bokeh.ploting:
 1.  prepare data
 2.  tell bokeh where to generate output(file or notebook)
 3.  call figure() to create a plot figure
-4.  add renderers, to add renderers to figure, such as ==
+4.  add renderers, to add renderers to figure, such as `fig.line()`
 5.  call `show()` or `save()` to output results
 
 <!--listend-->
@@ -140,7 +140,7 @@ p = figure(x_range=[0, 10], y_range=(10, 20))
 
 the generate **bokeh output**, such as html-file or notebook.
 
-bokeh default load **bokehjs** from cdn.bokeh.org, you can embedeed it static by ==
+bokeh default load **bokehjs** from cdn.bokeh.org, you can embedeed it static by `output_file(mode="inline")`
 
 
 ## <span class="org-todo todo TODO">TODO</span> more-exampels {#more-exampels}

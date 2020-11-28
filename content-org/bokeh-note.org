@@ -1,3 +1,5 @@
+# -*- org-export-babel-evaluate: nil; -*-
+
 #+STARTUP: content
 
 #+HUGO_SERIES: bokeh
@@ -149,3 +151,4 @@
     3) Streaming data automatically updating plots.
     4) Sophisticated glyph re-writing and transformations for “Big Data”.
     5) Plot and dashboard publishing for wider audiences.
+
