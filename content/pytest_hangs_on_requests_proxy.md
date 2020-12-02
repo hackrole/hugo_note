@@ -17,3 +17,9 @@ requests在处理请求过程会先 去拿到host对应的IP，然后决定是�
 
 通过host获取ip导致卡住，到时这里是否不会抛异常或打日志。
 
+
+- [] TODO pytest-profiling 模块使用
+- [] TODO profiling prof文件分析
+- [] TODO line-profiling
+- [] TODO request代理部分代码
+
