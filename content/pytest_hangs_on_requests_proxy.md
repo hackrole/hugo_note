@@ -4,7 +4,7 @@ author: hackrole
 email: hackrole.me@gmail.com
 date: 2020-12-02 14:32:47
 draft: true
-tags: ["pytest" "python"]
+tags: ["pytest", "python"]
 category: ["programming"]
 ---
 
