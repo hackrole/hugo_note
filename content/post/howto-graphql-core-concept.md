@@ -175,3 +175,9 @@ how to apply multi mutation at-once??
 graphql reslove was knows as CPU-unfriendly, which may case perfermance-problem.
 
 the data-loader desgin detail??
+
+
+#### <span class="org-todo todo TODO">TODO</span> 错误处理和debugger {#错误处理和debugger}
+
+
+#### <span class="org-todo todo TODO">TODO</span> authentication and authzation {#authentication-and-authzation}
