@@ -1,0 +1,108 @@
+# -*- org-export-babel-evaluate: nil; -*-
+
+#+STARTUP: content
+
+#+HUGO_SERIES: apache-druid OLAP, BI
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* apache-druid note                                           :@apache:druid:
+  
+** introducation
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: apache-druid-introduces
+   :EXPORT_DATE: 2020-11-28
+   :END:
+   
+*** what's druid
+   
+    1) realtime analytics database desgined for slice-and-dice analytics (OLAP query) on large dataset.
+       为大叔据OLAP设计的实时分析数据库
+    2) work beset with event-oriented data.
+       时间驱动数据，时序数据
+    3) real-time ingest, fast-query performance, high uptime.
+       数据实时摄入(data-stream)，快速query(100ms - seconds), 高可用(自愈)
+    4) commonly used for analytical applications or highly-concurrent API that need fast aggregations.
+       用于OLAP分析（如BI), 和需要快速聚合操作的高并发API
+       
+*** common applications area
+    
+    1) 点击分析
+    2) 网楼性能分析
+    3) 服务器指标
+    4) 供应链分析
+    5) BI/OLAP
+    6) 数字营销或广告分析
+    7) 应用性能分析
+
+
+
+*** core architecture desgin
+    ideas from data-warehouses, timeseries databases, logsearch system
+
+    1) columnar storage format. (fast scan and aggregations for OLAP)
+       列式存储格式
+    2) scalable distributed system. (typically deployed in cluster of tens of hundreds for servers, off millions of records/sec ingest rate, retention of trillions of records, query-latencies sub-seconds to a few seconds).
+       支持千台服务集群，每秒百万级数据摄入,万亿级数据，查询延时100ms-几秒.
+    3) massively parallel processing, 高并发
+    4) self-healing, self-balancing, easy to operate.
+    5) cloud-native, fault-tolerant architecture that won't lostdata(store copy in deep-storage like HDFS, S3). replication.
+    6) indexes for quick filtering, (TODO Roaring and CONCISE compressed bitmap indexes).
+    7) time-based partitioning, can additionally partition based on other fields.
+       第一位按时间分片，在时序数据上工作良好
+    8) approximate algorithms, (approximate count-distinct, ranking, histograms, quantiles)
+       支持近似查询算法来提高性能.
+    9) support automatic summarization at ingest time.
+       支持数据预聚合在数据摄入时
+
+*** when should or should not use druid
+    good choice when:
+    1) insert rate very high, update less.
+    2) most query are aggregation adn report query(group by), may aslo have searching and filter.
+    3) have a time-component(time-series data)
+    4) have high cardinality(基数) data columns like URLS, user_ids, and need fast couting and ranking over them.
+    5) want to load data from kafka, HDFS, flat files, s3.
+    
+
+    bad choice when:
+    1) want low-latency updates of existing records using primary key. not support streaming updates.
+    2) OLAP offline report system that query latency is not important.
+    3) big joins(big table join with big table) take long time to finish.
+
+*** key concept
+
+**** ingestion and ingestion spec
+     
+     time-column needed
+
+     dimensions and metries
+     
+     string dimension vs numerics dimension(not have indexes)
+
+     granularities (segments and query)
+     
+     data-type: long, float, double, string
+     
+     update data from druid
+   
+     delete data from druid
+
+     ingestion transforming and filter
+    
+**** roll-up
+     data pre-aggregation, 数据预聚合
+     配合query-granularities, 如果query-granularities为minute,不同minute的data不会rollup.
+     
+     #+begin_src json
+
+     #+end_src
+
+**** data retention
+
+**** segments and compacting segments
+     
+**** update data
+
+**** delete data
