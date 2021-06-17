@@ -1,0 +1,46 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: posts
+
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* learn sicp                                                           :SICP:
+  try to learn sicp
+
+** prepare to learn SICP
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: prepare_for_sicp
+   :EXPORT_DATE: 2021-06-02
+   :END:
+
+   
+*** resource
+    
+**** github resource
+     https://github.com/DeathKing/Learning-SICP
+
+**** bilibi video tutorial
+
+**** note
+    https://zhuanlan.zhihu.com/p/102408596
+    
+***** python version sicp from Berkeley
+      https://composingprograms.com/
+
+      chinese: https://wizardforcel.gitbooks.io/sicp-py/content/
+
+***** cs61a
+      https://cs61a.org/
+      
+**** offical site                                                      :main:
+     https://mitpress.mit.edu/sites/default/files/sicp/index.html
+
+     
+*** TODO develop environment
+    
+**** mit scheme
+     
+**** Racket
+      
+      
+      

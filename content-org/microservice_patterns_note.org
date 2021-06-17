@@ -1,0 +1,76 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: posts
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* microservice pattern note          :microservice:arthicture:design_pattern:
+ note about the book `microsverice pattern`
+
+ 
+** TODO saga pattern(轻量级分布式事务)
+   :PROPERTICES:
+   :EXPORT_FILE_NAME: export_file_name
+   :EXPORT_DATE: 2021-06-17
+   :END:
+
+   
+*** desc
+   [[https://fzsens.github.io/saga/2018/04/05/sagas/][blog about saga]] 
+
+   [[https://github.com/seata/seata][seata-阿里开源一站式分布式事务框架]] 
+   
+   
+**** implementing methods
+     
+***** Orchestration
+      集中式的逻辑编排
+
+***** Choreography
+      基于事件的分布式的逻辑编排
+    
+**** TODO paper read
+    
+**** concept
+     
+***** ACID
+      
+***** BASE
+
+***** compensations(补偿)
+
+
+**** compare
+     
+***** 2PC
+      
+***** XA
+      
+***** 3PC
+      
+***** TCC
+
+
+** TODO event-sourcing pattern(事件溯源)
+   :PROPERTICES:
+   :EXPORT_FILE_NAME: event_source_pattern
+   :EXPORT_DATE: 2021-06-17
+   :END:
+
+*** desc 
+
+    
+**** libraries
+     https://eventsourcing.readthedocs.io/en/v6.0.0/topics/projections.html
+
+     
+** TODO CQRS pattern(命令查询职责分离模式)
+   :PROPERTICES:
+   :EXPORT_FILE_NAME: CQRS_pattern
+   :EXPORT_DATE: 2021-06-17
+   :END:
+   
+   
+*** desc
+
+    
+*** relation with event-sourcing-pattern
