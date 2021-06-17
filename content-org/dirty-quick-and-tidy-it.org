@@ -1,0 +1,54 @@
+# -*- org-export-babel-evaluate: nil; -*-
+
+#+STARTUP: content
+
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+#+TITLE: dirty-quick-and-tidy-it
+#+DATE: 2021-05-10
+#+HUGO_TAGS: programming thinking
+#+HUGO_TAGS: thinking
+#+HUGO_DRAFT: false
+
+* backend
+
+the failure in manager knobs project, A project for the dirty work.
+
+* the reason
+
+** workflow error
+
+   the bad workflow
+   
+   #+begin_src plantuml
+     @startuml
+     "start code" -> "while code try to restruct the code"
+     "after code finish" -> "write test for the code or skip this just to deploy and test it by hand"
+     "the configure raise and origin design error"
+
+     @enduml
+   #+end_src
+   
+   the maybe-bettter workflow
+   
+   #+begin_src plantuml
+     @startuml
+     "get overview about the code, start write design-doc or just collect it"
+     "first try out the dependance-service, by use django-shell or python-script"
+     "write code or test, maybe TDD is ready now"
+
+     @enduml
+   #+end_src
+   
+   the reason for this is forget to do research, the dirty work maybe superise you in any ways.
+   write code too fast may fail you. first try to play with it, after you collection all need-blocks, the coding will be enjoyable.
+
+* something considable
+
+** maybe literate-programming??
+
+** start TDD very early may seems hard, better and research and play-around, it may be much easier.
+   
+
