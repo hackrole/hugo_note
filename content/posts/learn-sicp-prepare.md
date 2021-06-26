@@ -1,0 +1,144 @@
++++
+title = "prepare"
+author = ["hackrole"]
+date = 2021-06-26
+lastmod = 2021-06-26T13:48:55+08:00
+tags = ["SICP"]
+draft = true
+weight = 2001
++++
+
+## env prepare {#env-prepare}
+
+
+### install racket {#install-racket}
+
+```bash
+# on ubuntu
+sudo apt install racket
+```
+
+
+### install sicp package {#install-sicp-package}
+
+```bash
+# on ubuntu
+raco install sicp
+# or on drracket package-manager search for sicp and install
+# GUI handle
+```
+
+
+### racket get-starting {#racket-get-starting}
+
+the \`#lang sicp\` at the beginning
+
+
+#### using drracket, GUI handle {#using-drracket-gui-handle}
+
+
+#### using racket shell {#using-racket-shell}
+
+the \`#lang sicp\` not work in racket shell.
+define it in the file, and load the file by
+\`(enter! "filename.rkt")
+
+or using
+\`(load "filename.rkt")
+which seems not work with \`#lang define\`
+
+
+#### racket shell script {#racket-shell-script}
+
+```bash
+chmod +x filename.rktl
+./filename.rktl
+```
+
+```racket
+## filename: example.rktl
+#! /usr/bin/env racket
+(define (exract str)
+  (substring str 4 7))
+(extract "the dog out")
+```
+
+
+#### racket script {#racket-script}
+
+```racket
+;; filename: example rktl
+#lang sicp
+
+(define (add x y)
+  (+ x y))
+(add 1 2)
+```
+
+
+#### package racket programming into executable {#package-racket-programming-into-executable}
+
+1.  drracket Racket|create executable
+2.  raco exe <filename.rkt>
+3.  shell-script mode
+
+
+#### <span class="org-todo todo TODO">TODO</span> go-through the racket guide {#go-through-the-racket-guide}
+
+[racket get-started](https://docs.racket-lang.org/getting-started/index.html#%28part.%5Ftop%29)
+
+[racket guide](https://download.racket-lang.org/releases/8.1/doc/guide/intro.html)
+
+<!--list-separator-->
+
+- <span class="org-todo todo TODO">TODO</span>  how-to debug programming
+
+
+### the SICP site {#the-sicp-site}
+
+
+#### the offical site {#the-offical-site}
+
+<https://link.zhihu.com/?target=https%3A//mitpress.mit.edu/sicp/>
+
+
+#### the execise answers {#the-execise-answers}
+
+[sicp offical solution](http://community.schemewiki.org/?sicp-solutions)
+
+[the sicp execise answers chinese](https://sicp.readthedocs.io/en/latest/)
+
+
+#### ref site {#ref-site}
+
+[blog about get-started](https://zhuanlan.zhihu.com/p/34313034)
+
+
+## <span class="org-todo todo TODO">TODO</span> the first captial of sicp: 构造过程抽象 {#the-first-captial-of-sicp-构造过程抽象}
+
+
+### 程序设计的基本元素 {#程序设计的基本元素}
+
+
+### 过程和他们产生的计算 {#过程和他们产生的计算}
+
+
+### 用高阶过程做抽象 {#用高阶过程做抽象}
+
+
+## <span class="org-todo todo TODO">TODO</span> the second captial of sicp: 构造数据抽象 {#the-second-captial-of-sicp-构造数据抽象}
+
+
+### 数据抽象导论 {#数据抽象导论}
+
+
+### 层次性数据和闭包的性质 {#层次性数据和闭包的性质}
+
+
+### 符号数据 {#符号数据}
+
+
+### 抽象数据的多重表示 {#抽象数据的多重表示}
+
+
+### 带用通用型操作的系统 {#带用通用型操作的系统}

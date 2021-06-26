@@ -1,0 +1,18 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: posts
+
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+* cloud native with golang
+  
+** first cap
+
+*** TODO the twelve-factor app
+    
+    [[https://12factor.net][12-factor]
+    published by Heroku
+    
+*** microservices
+    [[https://martinfowler.com/articles/microservices.html][martin fowler microservice]]
+    
