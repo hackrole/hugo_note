@@ -366,47 +366,69 @@
      也可用于抽象多个函数的共用部分，将非共用部分作为lambda传入，但是需要注意不应已破坏函数的可读性为代价,
      比较好的思路就是看拆分后仍否可以方便为为函数命名
      
-     #+begin_src racket
-       #lang sicp
+     同时要关注如何将递归风格的高阶过程转化为迭代风格
+     
+     高阶过程可理解为过程抽象的技术，通过抽取相似过程，来提供抽象程度和提高代码复用性。
+     但是要注意最终目的是为了程序的可读性，过度抽象不可取
+     
+     这里通过对几个过程观察，可以提取出通用的sum过程，并进一步提取出更通用的累积过程accumerate.
 
-       (define (sum-itergers a b)
-         (if (> a b)
-             0
-             (+ a (sum-itergers (+ a 1) b))))
+      #+begin_src racket
+        #lang sicp
 
-       (define (sum-cubes a b)
-         (if (> a b)
-             0
-             (+ (cube a) (sum-cubes (+ a 1) b))))
-
-       (define (pi-sum a b)
-         (if (> a b)
-             0
-             (+ (/ 1.0 (* a (+ a 2))) (pi-sum (+ a 4) b))))
-
-
-       ;; 和式sum, next用于算出下一项
-       (define (sum term a next b)
+        (define (sum-itergers a b)
           (if (> a b)
               0
-              (+ (term a)
-                 (sum term (next a) next b))))
+              (+ a (sum-itergers (+ a 1) b))))
 
-       (define (inc n) (+ n 1))
-       (define (sum-cubers-2 a b)
-         (sum cube a inc b))
+        (define (sum-cubes a b)
+          (if (> a b)
+              0
+              (+ (cube a) (sum-cubes (+ a 1) b))))
 
-       (define (identity x) x)
-       (define (sum-intergers-2 a b)
-         (sum identity a inc b))
+        (define (pi-sum a b)
+          (if (> a b)
+              0
+              (+ (/ 1.0 (* a (+ a 2))) (pi-sum (+ a 4) b))))
 
-       (define (pi-sum-2 a b)
-         (define (pi-term x)
-           (/ 1.0 (* x (+ x 2))))
-         (define (pi-next x)
-           (+ x 4))
-         (sum pi-term a pi-next b))
-     #+end_src
+
+        ;; 和式sum, next用于算出下一项
+        (define (sum term a next b)
+           (if (> a b)
+               0
+               (+ (term a)
+                  (sum term (next a) next b))))
+
+        (define (inc n) (+ n 1))
+        (define (sum-cubers-2 a b)
+          (sum cube a inc b))
+
+        (define (identity x) x)
+        (define (sum-intergers-2 a b)
+          (sum identity a inc b))
+
+        (define (pi-sum-2 a b)
+          (define (pi-term x)
+            (/ 1.0 (* x (+ x 2))))
+          (define (pi-next x)
+            (+ x 4))
+          (sum pi-term a pi-next b))
+      #+end_src
+      
+***** 抽象选择的多样性
+      这里可以看出抽象选择的多样性，
+      如果文中提供的抽象都是对区间 [a, b]和next函数来逐次迭代来获取所有值。
+      
+      另一种方法，如实现一个数据生产器或迭代器（更主流的设计思路),组合map/reduce/filter过程
+      代码可读性可能更好些
+
+     
+**** TODO 函数零点和不动点
+     基于渐进的思路来寻找函数的解，需要注意过程是可收敛的，已经收敛的速度
+     
+     可以使用辅助方法来帮助函数收敛，如平均阻尼等.
+     
+     进一步函数零点和不动点的操作可以对很多可表示为函数的过程的通用操作，如
      
 *** TODO the second captial of sicp: 构造数据抽象
 
