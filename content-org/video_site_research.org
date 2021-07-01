@@ -1,8 +1,9 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: posts
+#+HUGO_SECTION: post
 
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+#+TITLE: 视频站点架构探索
 
 * video site or OBS site
  
