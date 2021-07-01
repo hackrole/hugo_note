@@ -101,7 +101,7 @@
 
 ** TODO the first captial of sicp: 构造过程抽象
    :PROPERTIES:
-   :EXPORT_FILE_NAME: learn-sicp-构造过程抽象
+   :EXPORT_FILE_NAME: learn-sicp-process-abstract
    :EXPORT_DATE: 2021-06-31
    :END:
 
@@ -435,7 +435,7 @@
      
 ** TODO the second captial of sicp: 构造数据抽象
    :PROPERTIES:
-   :EXPORT_FILE_NAME: learn-sicp-构造数据抽象
+   :EXPORT_FILE_NAME: learn-sicp-data-abstract
    :EXPORT_DATE: 2021-06-31
    :END:
 

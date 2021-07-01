@@ -2,7 +2,7 @@
 title = "prepare"
 author = ["代鹏"]
 date = 2021-06-26
-lastmod = 2021-07-01T10:54:10+08:00
+lastmod = 2021-07-01T13:20:29+08:00
 tags = ["SICP"]
 draft = true
 weight = 2001
