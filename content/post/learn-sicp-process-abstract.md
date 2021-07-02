@@ -1,7 +1,7 @@
 +++
 title = "the first captial of sicp: 构造过程抽象"
 author = ["代鹏"]
-date = 2021-06-31
+date = 2021-06-29
 lastmod = 2021-07-01T13:20:30+08:00
 tags = ["SICP"]
 draft = true
