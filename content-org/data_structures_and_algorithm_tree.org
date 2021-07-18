@@ -7,6 +7,10 @@
 * Tree Algorithm                                             :tree:algorithm:
   
 ** the concept
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: algorithm_tree_introduce
+   :EXPORT_DATE: 2021-07-18
+   :END:
    
 *** tree
     1) root 树根
