@@ -1,8 +1,9 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: posts
+#+HUGO_SECTION: post
 
 #+HUGO_WEIGHT: auto
 #+HUGO_AUTO_SET_LASTMOD: t
+#+TITLE: 视频站点架构探索
 
 * video site or OBS site
  
@@ -104,7 +105,7 @@
 **** 流媒体服务器??
      
 **** P2P技术的可能性?
-     已经基于web的p2p技术的可能性
+     基于web的p2p技术的可能性
      
      参考实现: 快播?
 
