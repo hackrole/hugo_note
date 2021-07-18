@@ -1,0 +1,101 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
+
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: T
+
+* Tree Algorithm                                             :tree:algorithm:
+  
+** the concept
+   
+*** tree
+    1) root 树根
+    2) node 节点
+    3) leaf 叶子节点
+    4) parent 父节点
+    5) children 子节点
+    6) 兄弟节点
+
+*** 二叉查找树
+   
+**** 性质
+     1) parent have two child, left and right
+     2) key(left) <= key(parent) <= key(right)
+
+*** TODO AVL树 
+     带平衡条件的特殊二叉树.
+     
+     TODO 源码实现
+    
+**** 性质
+     1) every node has a height property
+     2) every node: abs(height(left(node)) - height(right(node)) <= 1
+
+        
+**** 支持的操作
+     
+***** 查找
+      同二叉树
+
+***** 插入
+      需要通过旋转来保持AVl性质.
+
+      分四种情况:
+      1) 左左
+      2) 右右
+      3) 左右
+      4) 右左
+
+      两两对称, 同方向使用单旋， 不同方式需要使用双旋转.
+      
+      递归向上保持？？？
+      
+****** TODO 伪码
+      
+***** TODO 删除
+
+
+     
+*** TODO red-black tree
+    
+**** concept
+     black-height 黑高度, 从节点到叶子节点的黑节点数
+    
+**** 性质
+     1) struct node{color, parent, left, rigtht, key}
+     2) node color in {red, black}
+     3) if node is leaf, color(node) == black
+     4) color(root) == black
+     5) if color(node) == red, then color(left(node)) == color(right(node)) == black
+     6) for every node, black height equals
+
+**** 查找
+     同二叉树
+
+**** TODO 插入
+     
+     1) 找到可以插入的叶子节点位置
+     2) 插入节点，并设置节点为红色
+     3) 改变树结构维持红黑树性质.
+     4) 父节点 == black结束.
+     5) 父节点和叔节点为红, 设置父和叔为黑，父父为红，对父父应用平衡条件
+     6) 父节点为红，叔节点为黑， ...
+
+     
+     #+begin_src plantuml
+
+     #+end_src
+
+     
+**** TODO delete
+     
+*** TODO B tree
+
+    四阶B-tree: 2-3-4树
+    三阶B-tree: 2-3树
+    
+**** 性质
+     1) struct {parent, keys[], children[], cap}
+     2) if node is not root or leaf, cap/2 len(children) < cap
+     3) every leaf have same height
+
