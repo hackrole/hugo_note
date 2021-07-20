@@ -1,8 +1,8 @@
 +++
 title = "the second captial of sicp: 构造数据抽象"
-author = ["代鹏"]
+author = ["hackrole"]
 date = 2021-06-29
-lastmod = 2021-07-02T15:00:50+08:00
+lastmod = 2021-07-18T20:28:29+08:00
 tags = ["SICP"]
 draft = true
 weight = 2003
