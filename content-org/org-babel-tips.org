@@ -93,3 +93,8 @@
 * :results config
 
 * golang :main no
+
+
+* TODO multiple results output with single code block
+
+* code version-control while literal-programming
