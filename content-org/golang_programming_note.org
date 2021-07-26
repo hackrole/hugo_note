@@ -6,7 +6,283 @@
 
 * golang programming language                                        :golang:
   
+** ch11: go测试
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: go-test
+   :EXPORT_DATE: 2021-07-18
+   :END:
+   
+*** go test 工具
+    file with name endwith `_test.go` was build by `go test` instead of `go build`
 
+    there are three kind of Function need to be remember:
+    1) Function which Name starts with `Test` was used as UnitTest or FunctionalTest
+    2) Function which Name starts with `Benchmark` was used as Benmark.
+    3) Function which Name starts with 'Example` was used as Example.
+
+*** Test Function
+   
+    test function must:
+    1) import `testing` package
+    2) has `t *testing.T` as only argument
+    3) use tool-function in `testing.T` to report fails or logging.
+   
+    #+begin_src go :tangle "/home/hackrole/projects/learn-by-gopl/ch11/word1.go" :main no
+      package word
+
+      // IsPalindrome
+      func IsPalindrome(s string) bool {
+        for i := range s {
+          if s[i] != s[len(s)-1-i] {
+            return false
+          }
+        }
+        return true
+      }
+    #+end_src
+   
+    #+begin_src go :noweb yes :exports none :mkdirp yes :tangle "/home/hackrole/projects/learn-by-gopl/ch11/word_test.go" :main no
+      <<FirstTest>>
+
+      <<SecondTest>>
+
+      <<ThirdTest>>
+    #+end_src
+   
+    #+begin_src go :noweb-ref FirstTest
+      package word
+
+      import "testing"
+
+      // TestPalindrome
+      func TestPalindrome(t *testing.T) {
+        if !IsPalindrome("detartrated") {
+          t.Errorf(`IsPalindrome("detartrated") = false`)
+        }
+        if !IsPalindrome("kayak") {
+          t.Errorf(`IsPalindrome(kayak) = false`)
+        }
+      }
+
+      // TestNonPalindrome
+      func TestNonPalindrome(t *testing.T) {
+        if IsPalindrome("palindrome") {
+          t.Errorf(`IsPalindrome("palindrome") = true`)
+        }
+      }
+    #+end_src
+   
+    #+begin_src shell
+      cd ~/projects/learn-by-gopl/ch11 && go test
+    #+end_src
+
+    #+RESULTS:
+  
+    #+begin_src go :noweb-ref SecondTest
+      // TestFrencehPalindrome ...
+      func TestFrencehPalindrome(t *testing.T) {
+        if !IsPalindrome("中国中") {
+          t.Errorf(`IsPalindrome("中国中") = false`)
+        }
+      }
+
+      func TestCanalPalindrome(t *testing.T) {
+        input := "A man, a plan, a canal: Panama"
+        if !IsPalindrome(input) {
+          t.Errorf(`IsPalindrome(%q") = false`, input)
+        }
+      }
+    #+end_src
+
+
+    output detail message with `-v` flag
+    #+begin_src shell :results output :epilogue "true"
+      cd ~/projects/learn-by-gopl/ch11 && go test -v
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    === RUN   TestPalindrome
+    --- PASS: TestPalindrome (0.00s)
+    === RUN   TestNonPalindrome
+    --- PASS: TestNonPalindrome (0.00s)
+    === RUN   TestFrencehPalindrome
+    --- FAIL: TestFrencehPalindrome (0.00s)
+        word_test.go:26: IsPalindrome("中国中") = false
+    === RUN   TestCanalPalindrome
+    --- FAIL: TestCanalPalindrome (0.00s)
+        word_test.go:33: IsPalindrome("A man, a plan, a canal: Panama"") = false
+    FAIL
+    exit status 1
+    FAIL	github.com/hackrole/gopl/ch11	0.001s
+    #+end_example
+   
+    run certain testcase with `-run` flag
+
+    #+begin_src shell :results output :epilogue "true"
+      cd ~/projects/learn-by-gopl/ch11 && go test -v -run="French|Canal"
+    #+end_src
+
+    #+RESULTS:
+    : === RUN   TestCanalPalindrome
+    : --- FAIL: TestCanalPalindrome (0.00s)
+    :     word_test.go:33: IsPalindrome("A man, a plan, a canal: Panama"") = false
+    : FAIL
+    : exit status 1
+    : FAIL	github.com/hackrole/gopl/ch11	0.002s
+   
+    #+begin_src go :main no :tangle "/home/hackrole/projects/learn-by-gopl/ch11/word1.go"
+      package word
+
+      import "unicode"
+
+      // IsPalindrome
+      func IsPalindrome(s string) bool {
+        var letters []rune
+        for _, r := range s {
+          if unicode.IsLetter(r) {
+            letters = append(letters, unicode.ToLower(r))
+          }
+        }
+
+        for i := range letters {
+          if letters[i] != letters[len(letters)-1-i] {
+            return false
+          }
+        }
+        return true
+      }
+    #+end_src
+
+    #+begin_src shell :results output :epilogue "true"
+      cd ~/projects/learn-by-gopl/ch11 && go test -v -run="French|Canal"
+    #+end_src
+
+    #+RESULTS:
+    : === RUN   TestCanalPalindrome
+    : --- PASS: TestCanalPalindrome (0.00s)
+    : PASS
+    : ok  	github.com/hackrole/gopl/ch11	0.001s
+   
+    基于表格的测试方法在go中很常见
+   
+    #+begin_src go :noweb-ref ThirdTest
+      // TestPalindrome ...
+      func TestPalindromeWithTable(t *testing.T)  {
+        var tests = []struct{
+          input string
+          want bool
+        }{
+          {"", true},
+          {"a", true},
+          {"aa", true},
+          {"ab", false},
+          {"kayak", true},
+        }
+
+        for _, test := range tests {
+          if got := IsPalindrome(test.input); got !=  test.want {
+            t.Errorf("IsPalindrome(%q) = %v", test.input, got)
+          }
+        }
+
+      }
+    #+end_src
+
+    #+begin_src shell :results output :epilogue "true"
+      cd ~/projects/learn-by-gopl/ch11 && go test
+    #+end_src
+
+    #+RESULTS:
+    : PASS
+    : ok  	github.com/hackrole/gopl/ch11	0.001s
+   
+    `t.Fatal` and `t.Fatalf` used to logging and then stop the testcase,
+    this must be used in the same goroutine
+   
+*** test main function
+    
+    #+begin_src go
+      package main
+
+      import (
+        "flag"
+        "fmt"
+        "io"
+        "os"
+        "strings"
+      )
+
+      var (
+        n = flag.Bool("n", false, "omit trailingnewline")
+        s = flag.String("s", " ", "separator")
+      )
+
+      // used for mock
+      var out io.Writer = os.Stdout
+
+      func main() {
+        flag.Parse()
+        if err := echo(!*n, *s, flag.Args()); err != nil {
+          fmt.Fprintf(os.Stdout, "echo: %v\n", err)
+          os.Exit(1)
+        }
+      }
+
+      // Echo
+      func Echo(newline bool, sep string, args []string) error {
+        fmt.Fprintf(out, strings.Join(args, sep))
+        if newline {
+          fmt.Fprintf(out)
+        }
+        return nil
+      }
+    #+end_src
+    
+    not call `log.Fatal` or `os.Exit` in test function.
+    
+    #+begin_src go :main no
+      package main
+
+      import (
+        "bytes"
+        "fmt"
+        "testing"
+      )
+
+      // TestEcho ...
+      func TestEcho(t *testing.T)  {
+        var tests = []struct{
+          newline bool
+          sep string
+          args []string
+          want string
+        }{
+          {true, "", []string[], "\n"},
+          {false, "", []string{}, ""},
+          {true, "\t", []string{"one", "two", "three"}, "one\ttwo\tthree\n"},
+          {true, ",", []string{"a", "b", "c"}, "a,b,c\n"}
+        }
+
+        for _, test := range tests {
+          descr := fmt.Sprintf("echo(%v, %q, %q)", test.newline, test.sep, test.args)
+          out = new(bytes.Buffer)
+          if err := echo(test.newline, test.sep, test.args); err != nil {
+            t.Errorf("%s failed: %v", descr, err)
+            continue
+          }
+          got := out.(*bytes.Buffer).String()
+          if got != test.want {
+            f.Errorf("%s = %q, want %q", descr, got, test.want)
+          }
+        }
+      }
+
+    #+end_src
+    
+    
+*** 外部测试包
+   
 ** ch12: 反射reflection
    :PROPERTIES:
    :EXPORT_FILE_NAME: golang_reflection
