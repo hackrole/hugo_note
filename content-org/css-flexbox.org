@@ -1,0 +1,27 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
+
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+#+TITLE: css flexbox notes
+
+#+DATE: 2020-10-27
+#+HUGO_TAGS: css
+#+HUGO_CATEGORIES: css
+
+#+HUGO_DRAFT: false
+
+* concept
+  
+** main aixs vs across aixs
+
+  
+** one-dimension
+
+   
+** write-flow unknown
+
+
+   
+* property
