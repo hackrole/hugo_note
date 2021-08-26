@@ -1,0 +1,100 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
+
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+
+#+TITLE: tips while using org-babel
+
+#+DATE: 2020-10-27
+#+HUGO_TAGS: org org-babel
+#+HUGO_CATEGORIES: emacs
+#+HUGO_DRAFT: false
+
+* multiple block tangle to single file 
+  
+  TODO note it.
+  [[the offical doc][https://orgmode.org/manual/Noweb-Reference-Syntax.html]]
+  
+** first format
+   use `:noweb yes` and variable as placeholder.
+   write code block with header `:noweb-ref <placeholder variable>`
+ 
+   #+begin_src elisp :noweb yes :tangle "/tmp/some-place-to-tangle.el" :exports code :mkdir yes
+     <<config>>
+
+     <<next-config>>
+   #+end_src
+   
+   #+begin_src elisp :noweb-ref config
+     (println "hello")
+   #+end_src
+   
+   #+begin_src elisp :noweb-ref config
+     (println "this following")
+   #+end_src
+   
+   #+begin_src elisp :noweb-ref next-config
+     (println "this is another ways")
+   #+end_src
+
+   
+** use name and collect
+   
+   #+NAME: init
+   #+begin_src emacs-lisp
+    (setq msg "Never a foot too far, even.")
+   #+end_src
+  
+   #+NAME: msg
+   #+begin_src emacs-lisp
+     (message msg)
+   #+end_src
+   
+   #+NAME: goodbye
+   #+begin_src emacs-lisp
+     (message "good bye")
+   #+end_src
+    
+  
+   #+begin_src emacs-lisp :noweb yes :tangle "/tmp/name_tangle.el"
+     <<init>>
+
+     <<msg>>
+
+     <<goodbye>>
+   #+end_src
+
+   #+RESULTS:
+   : good bye
+   
+
+   
+* TODO lsp-mode completion
+  
+  add :tangle options can enable lsp-mode completion.
+  see [[github issues on lsp-mode][https://github.com/emacs-lsp/lsp-mode/issues/655]]
+
+  
+* TODO working as jupyter notebook
+  
+** seaborn drawer
+
+** bokeh drawer
+
+** pandas dataframe
+
+   
+* TODO move around
+  
+
+* TODO export config
+
+* :results config
+
+* golang :main no
+
+
+* TODO multiple results output with single code block
+
+* code version-control while literal-programming
