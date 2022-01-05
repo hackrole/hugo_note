@@ -1,0 +1,335 @@
++++
+title = "source read"
+author = ["代鹏"]
+date = 2021-01-05
+lastmod = 2022-01-05T14:31:14+08:00
+categories = ["urllib3"]
+draft = false
++++
+
+## <span class="org-todo todo TODO">TODO</span> add lib to auto-read python lib, make plantuml file {#add-lib-to-auto-read-python-lib-make-plantuml-file}
+
+
+## plantuml graph {#plantuml-graph}
+
+
+### class graph {#class-graph}
+
+```plantuml
+@startuml
+class RequestMethods {
+        __init__(headers)
+        urlopen(method: str, url: str, body, headers, encode_multipart, **kw) -> BaseHTTPResposne
+        request(method: str, url: str, body, fields, headers, json, **urlopen_kw) -> BaseHTTPResposne
+        request_encode_url(method, url, fields, headers, **urlopen_kw) -> BaseHTTPResposne
+        request_encode_body(method, url, fields, headers, encode_multipart: bool, **urlopen_kw) -> BaseHTTPResposne
+}
+
+class ContentDecoder {
+        decompress(self, data: btyes) -> bytes
+        flush(self) -> bytes
+}
+
+class DeflateDecoder {
+        decompress(self, data: bytes) -> bytes
+        flush(self) -> bytes
+}
+
+enum GzipDecoderState {
+        FIRST_MEMBER
+        OTHER_MEMBERS
+        SWALLOW_DATA
+}
+class GzipDecoder {
+        decompress(self, data: bytes) -> bytes
+        flush(self) -> bytes
+}
+
+class BrotliDecoder {
+        flush(self) -> bytes
+}
+
+class MultiDecoder {
+        list[ContentDecoder] _decoders
+        decompress(self, data: bytes) -> bytes
+        flush(self) -> bytes
+}
+
+ContentDecoder <|-- DeflateDecoder
+ContentDecoder <|-- GzipDecoder
+ContentDecoder <|-- BrotliDecoder
+ContentDecoder <|-- MultiDecoder
+
+class BaseHTTPResposne {
+        abstract data : property
+        abstract url : property
+        abstract closed : property
+        abstract HTTPConnection connection : property
+
+        get_redirect_location(self) -> Union[None, str, False]
+        json() -> Any
+        abstract stream(amt: Optional[int] decode_content: Optional[bool]) -> Iterator[bytes]
+        abstract read(amt: Optional[int], decode_content: Optional[bool], cache_content: bool) -> bytes
+        abstract read_chunked(self, amt: Optional[int], decode_content: Optional[bool]) -> Iterator[bytes]
+        abstract release_conn(self) -> None
+        abstract draion_conn(self) -> None
+        abstract close(self) -> None
+
+        _init_decoder(self) -> None
+        _decode(self, data: bytes, decode_content: Optional[bool], flush_decoder: bool) -> bytes
+        _flush_decoder(self) -> bytes
+        readable(self) -> bool
+        readinto(self, b: bytearray) -> int
+        getheaders(self) -> List[Tuple[str, str]]
+        getheader(self, name: str, default: Optional[str] = None) -> Optional[str]
+
+        info(self) -> HTTPHeaderDict
+        geturl(self) -> Optional[Union[str, Literal[False]]]
+}
+
+class HTTPResponse {
+        data : property
+        url: property
+        connection : property
+
+        release_conn(self) -> None
+        draion_conn(self) -> None
+
+        is_closed(self) -> bool
+        tell(self) -> int
+        _init_length(self, request_method: Optional[str]) -> Optional[int]
+        _error_catcher(self) -> Generator(None, None, None) : contextmanager
+        read(self, amt: Optional[int], decode_content: Optional[bool] = None, cache_content: bool = False) -> bytes
+        stream(amt: Optional[int] decode_content: Optional[bool]) -> Iterator[bytes]
+        classmethod from_httplib(ResponseCls, r: HttpLibHTTPResponse, **response_kw: Any) -> HTTPResponse
+
+        close(self) -> None
+        closed(self) -> bool :property
+        fileno(self) -> int
+        flush(self) -> None
+        supports_chunked_read(self) -> bool
+        _update_chunk_length(self) -> None
+        _handle_chunk(self, amt: Optional[int]) -> bytes
+        read_chunked(self, amt: Optional[int], decode_content: Optional[bool] = None) -> Generator[bytes, None, None]
+        __iter__(self) -> Iterator[bytes]
+}
+
+BaseHTTPResposne <|-- HTTPResponse
+
+@enduml
+```
+
+{{< figure src="/image/urllib3_static_class.png" >}}
+
+```plantuml
+@startuml
+enum _Sentinel {
+        not_passed
+}
+
+class RecentUsedContainer {
+}
+
+class HTTPHeaderDictItemView {
+        HTTPHeaderDict _headers
+}
+class HTTPHeaderDict {
+
+}
+@enduml
+```
+
+{{< figure src="/image/urllib3_collections_class.png" >}}
+
+
+### pool\_manager {#pool-manager}
+
+```plantuml
+@startuml
+class PookKey {
+        key_scheme
+        key_host
+        key_port
+        key_timeout
+        key_retries
+        key_block
+        key_source_address
+        key_key_file
+        key_key_password
+        key_cert_file
+        key_cert_reqs
+        key_ca_certs
+        key_ssl_version
+        key_ssl_minimum_version
+        key_ssl_maximum_version
+        key_ca_cert_dir
+        key_ssl_context
+        key_maxsize
+        key_headers
+        key__proxy
+        key__proxy_headers
+        key__proxy_config
+        key_socket_options
+        key__socks_options
+        key_assert_hostname
+        key_assert_fingerprint
+        key_server_hostname
+        key_blocksize
+}
+
+class PoolManager {
+        __enter__(self) -> _SelfT
+        __exit__(self, exc_type, exc_val, exc_tb) --> Literal[False]
+        _new_pool(self, scheme: str, host: str, port: str, request_context: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool
+        clear(self) -> None
+        connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = "http", pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool
+        connection_from_context(self, request_context: Dict[str, Any]) -> HTTPConnectionPool
+        connection_from_pool_key(self, pool_key: PoolKey, request_context: Dict[str, Any]) -> HTTPConnectionPool
+        connection_from_url(self, url: str, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool
+        _merge_pool_kwargs(self, overrider: Optional[Dict[str, Any]]) -> Dict[str, Any]
+        _proxy_requires_url_absolute_form(self, parsed_url: Url) -> bool
+        urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -> BaseHTTPResponse
+}
+
+class ProxyManager {
+        connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = "http", pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool
+        _set_proxy_headers(self, url: str, headers: Optional[Mapping[str, str]] = None) -> Mapping[str, str]
+        urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -> BaseHTTPResponse
+}
+
+
+RequestMethods <|-- PoolManager
+PoolManager <|-- ProxyManager
+@enduml
+```
+
+{{< figure src="/image/urllib3_pool_manager_class.png" >}}
+
+
+### fields {#fields}
+
+```plantuml
+class RequestField {
+        _name
+        _filename
+        headers
+
+        classmethod from_tuples(cls, fieldname: str, value ) -> RequestField
+        _render_part(self, name: str, value) -> str
+        _render_parts(self, header_parts: Union[Dict[str, str], Sequence[Tuple[str, str]]) -> str
+        render_headers(self) -> str
+        make_multipart(self, content_disposition: Optional[str] = None, content_type: Optional[str] = None, content_loation: Optional[str] = None) -> None
+}
+```
+
+
+### exceptions {#exceptions}
+
+```plantuml
+@startuml
+Excepption <|-- HTTPError
+Warning <|-- HTTPWarning
+PoolError <|-- HTTPError
+PoolError <|-- RequestError
+HTTPError <|-- SSLERROR
+HTTPError <|-- ProxyError
+HTTPError <|-- DecodeError
+HTTPError <|-- ProtocolError
+HTTPError <|-- ConnectionError
+RequestError <|-- MaxRetryError
+RequestError <|-- HostChangeError
+HTTPError <|-- TimeoutStateError
+HTTPError <|-- TimeoutError
+TimeoutError <|-- ReadTimeoutError
+TimeoutError <|-- ConnectTimeoutError
+ConnectTimeoutError <|-- NewConnectionError
+NewConnectionError <|-- NameResolutionError
+PoolError <|-- EmptyPoolError
+PoolError <|-- FullPoolError
+@enduml
+```
+
+{{< figure src="/image/urllib3_exceptions_class.png" >}}
+
+
+### connection pool {#connection-pool}
+
+```plantuml
+@startuml
+class ConnectionPool {
+        __str__(self) -> str
+        __enter__(self) -> SelfT
+        __exit__(self, exec_type, exc_value, exc_tb) -> "Literal[False]"
+        close(self) -> None
+}
+class HTTPConnectionPool {
+        _new_conn(self) -> HTTPConnection
+        _get_conn(self, timeout: Optional[float] = None) -> HTTPConnection
+        _put_conn(self, conn: Optional[HTTPConnection]) -> None
+        _validate_conn(self, conn: HTTPConnection) -> None
+        _prepare_proxy(self, conn: HTTPConnection) -> None
+        _get_timeout(self, timeout) -> Timeout
+        _raise_timeout(self, err, url: str, timeout_value) -> None
+        _make_request(self, conn: HTTPConnection, method: str, url: str, timeout: float, chunked: bool = False, **httplib_request_kw: Any) -> _HttplibHTTPResponse
+        _absolute_url(self, path: str) -> str
+        close(self) -> None
+        is_same_host(self, url: str) -> bool
+        urlopen(self, method: str, url: str, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw: Any) -> BaseHTTPResponse
+}
+
+class HTTPSConnectionPool {
+        _prepare_conn(self, conn: HTTPSConnection) -> HTTPConnection
+        _prepase_proxy(self, conn: HTTPSConnection) -> None
+        _new_conn(self) -> HTTPConnection
+        _validate_conn(self, conn: HTTPConnection) -> None
+}
+
+ConnectionPool <|-- HTTPConnectionPool
+RequestMethods <|-- HTTPConnectionPool
+HTTPConnectionPool <|-- HTTPSConnectionPool
+@enduml
+```
+
+{{< figure src="/image/urllib3_connectionpool_class.png" >}}
+
+
+### connection {#connection}
+
+```plantuml
+@startuml
+NamedTuple <|-- ProxyConfig
+class ProxyConfig {
+        ssl_context
+        use_forwarding_for_https
+}
+
+_HTTPConnection <|-- HTTPConnection
+
+class HTTPConnection {
+        host : property
+        _new_conn(self) -> socket.socket
+        _is_using_tunnel(self) -> Optional[str]
+        _prepare_conn(self, conn: socket.socket) -> None
+
+        connect(self) -> None
+        close(self) -> None
+        putrequest(self, method: str, url: str, skip_host: bool = False, skip_accept_encoding: bool = False) -> None
+        putheader(self, header: str, *values: str) -> None
+        request(self, method: str, url: str, body, headers: Mapping) -> None
+        request_chunked(self, method: str, url: str, body, headers: Mapping) -> None
+}
+
+HTTPConnection <|-- HTTPSConnection
+
+class HTTPSConnection {
+        set_cert(self, key_file, cert_fiel, cert_reqs, key_password, ca_certs, assert_hostname, assert_fingerprint, ca_cer_dir, ca_cert_data) -> None
+        connect(self) -> None
+        _connect_tls_proxy(self, hostname: str, conn: socket.socket) -> 'ssl.SSLSocket'
+}
+
+class DummmyConnection {
+}
+@enduml
+```
+
+{{< figure src="/image/urllib3_connection_class.png" >}}
